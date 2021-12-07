@@ -40,8 +40,16 @@ const cube = new ClickableObject(
 )
 
 
-window.addEventListener('click', onDocumentMouseDown, false);
+window.addEventListener('keydown', onDocumentKeyDown, false);
 
+function onDocumentKeyDown( e ) {
+    if (e.which == 32) {
+	console.log("space")
+    }
+}
+
+
+window.addEventListener('click', onDocumentMouseDown, false);
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
