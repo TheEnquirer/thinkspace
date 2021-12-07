@@ -41,12 +41,28 @@ const cube = new ClickableObject(
 
 
 window.addEventListener('keydown', onDocumentKeyDown, false);
-
+window.addEventListener('keyup', onDocumentKeyUp, false);
+let up = false;
+let down = false;
 function onDocumentKeyDown( e ) {
-    if (e.which == 32) {
-	console.log("space")
+    console.log(e)
+    if (e.which == 81) {
+	up = true;
+    }
+    if (e.which == 69) {
+	down = true;
     }
 }
+
+function onDocumentKeyUp( e ) {
+    if (e.which == 81) {
+	up = false;
+    }
+    if (e.which == 69) {
+	down = false;
+    }
+}
+
 
 
 window.addEventListener('click', onDocumentMouseDown, false);
@@ -73,6 +89,16 @@ camera.position.z = 5;
 function animate() {
     requestAnimationFrame( animate );
     controls.update( clock.getDelta() );
+    //console.log(flying)
+    if (up) {
+	camera.position.y += 0.1;
+    }
+
+    if (down) {
+	camera.position.y -= 0.1;
+    }
+    // event handling
+
     //cube.rotation.x += 0.01;
     cube.mesh.rotation.y += 0.01;
     renderer.render( scene, camera );
