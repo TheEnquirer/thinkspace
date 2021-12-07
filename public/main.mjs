@@ -30,8 +30,14 @@ class ClickableObject {
     }
 }
 
-const cubemesh = new THREE.Mesh( new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0xffffff }),);
-const cube = new ClickableObject( cubemesh, () => {console.log("testin")} )
+
+const cubemesh = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: 0xffffff }),
+);
+const cube = new ClickableObject(
+    cubemesh, () => {console.log("testin")}
+)
 
 
 window.addEventListener('click', onDocumentMouseDown, false);
@@ -60,7 +66,7 @@ function animate() {
     requestAnimationFrame( animate );
     controls.update( clock.getDelta() );
     //cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    cube.mesh.rotation.y += 0.01;
     renderer.render( scene, camera );
 }
 animate();
