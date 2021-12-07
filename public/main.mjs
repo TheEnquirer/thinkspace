@@ -50,6 +50,8 @@ const cube = new THREE.Mesh(
 //cube.on('click', function(ev) {console.log("clisin")});
 scene.add( cube );
 cube.cursor = 'pointer';
+cube.callback = function () { console.log("callbacked!") }
+
 //cube.on('click', function(ev) {console.log("clicked", ev)});
 console.log(interaction, cube)
 //interaction.onClick()
@@ -64,6 +66,42 @@ console.log(interaction, cube)
 
 //var intersectedObjects = rayCaster.intersectObjects(objects);
 //console.log(intersectedObjects);
+
+
+
+
+
+window.addEventListener('click', onDocumentMouseDown, false);
+
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+
+function onDocumentMouseDown( event ) {
+    event.preventDefault();
+    mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+    raycaster.setFromCamera( mouse, camera );
+    console.log(scene.children, "children");
+    var intersects = raycaster.intersectObjects( scene.children );
+    console.log(intersects[0]);
+    if ( intersects.length > 0 ) {
+	intersects[0].object.callback();
+}}
+
+//var mesh_menu_title = new THREE.Mesh(geometry_menu, materials_menu);
+//mesh_menu_title.name = 'select_lang';
+//mesh_menu_title.callback = function() { select_language();}
+//scene.add(mesh_menu_title);
+
+//function select_language(){
+//    var selectedObject = scene.getObjectByName("select_lang"); 
+//    scene.remove( selectedObject );
+//    var selectedObject = scene.getObjectByName("start");
+//    scene.remove( selectedObject );
+//    var selectedObject = scene.getObjectByName("menu");
+//    scene.remove( selectedObject );
+//}
+
 
 
 camera.position.z = 5;
