@@ -63,6 +63,7 @@ console.log(model.scene.children[2])
 
 
 //scene.add(model.scene);  // TODO @TheEnquirer not sure how to meshify this
+// @exr0n done :)
 
 const defaultCube = new ClickableObject(
     model.scene.children[2], () => {console.log("the defaultCube!")}
@@ -81,24 +82,28 @@ const cube = new ClickableObject(
 
 window.addEventListener('keydown', onDocumentKeyDown, false);
 window.addEventListener('keyup', onDocumentKeyUp, false);
+
 let up = false;
 let down = false;
+let fasterTurn = false;
 function onDocumentKeyDown( e ) {
     //console.log(e)
     if (e.which == 81) {
 	up = true;
-    }
-    if (e.which == 69) {
+    } else if (e.which == 69) {
 	down = true;
+    } else if (e.which == 16) {
+	fasterTurn = true;
     }
 }
 
 function onDocumentKeyUp( e ) {
     if (e.which == 81) {
 	up = false;
-    }
-    if (e.which == 69) {
+    } else if (e.which == 69) {
 	down = false;
+    } else if (e.which == 16) {
+	fasterTurn = false;
     }
 }
 
@@ -131,15 +136,11 @@ function animate() {
     renderer.setSize( window.innerWidth, window.innerHeight );
     controls.update( clock.getDelta() );
     //console.log(flying)
-    if (up) {
-	camera.position.y += 0.1;
-	//defaultCube.mesh.visible = true;
-    }
+    if (up) { camera.position.y += 0.1; }
 
-    if (down) {
-	camera.position.y -= 0.1;
-	//defaultCube.mesh.visible = false;
-    }
+    if (down) { camera.position.y -= 0.1; }
+
+    if (fasterTurn) { controls.lookSpeed = 0.3 } else { controls.lookSpeed = 0.1 }
     // event handling
 
     //cube.rotation.x += 0.01;
