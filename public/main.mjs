@@ -22,6 +22,19 @@ let controls = new FirstPersonControls( camera, renderer.domElement );
 controls.movementSpeed = 10;
 controls.lookSpeed = 0.05;
 
+// dead zone for controls
+(() => {
+    document.addEventListener('mousemove', e => {
+        const deadspace = 0.1;  // of the entire width/height of the scene
+        if (Math.abs(controls.mouseX) < renderer.domElement.width  * deadspace / 2 &&
+            Math.abs(controls.mouseY) < renderer.domElement.height * deadspace / 2) {
+            controls.activeLook = false;
+        } else {
+            controls.activeLook = true;
+        }
+    })
+})();
+
 // MESHES
 
 class ClickableObject {
@@ -115,6 +128,7 @@ camera.position.z = 5;
 
 function animate() {
     requestAnimationFrame( animate );
+    renderer.setSize( window.innerWidth, window.innerHeight );
     controls.update( clock.getDelta() );
     //console.log(flying)
     if (up) {
@@ -136,4 +150,10 @@ function animate() {
 animate();
 
 
+document.addEventListener('resize', e => {
+    // TODO handle resizes
+    console.log('resized!')
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    controls.handleResize();
+});
 
