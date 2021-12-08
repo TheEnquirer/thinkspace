@@ -45,7 +45,17 @@ model.scene.scale.x = 1;
 model.scene.scale.y = 1;
 model.scene.scale.z = 1;
 model.scene.position.x = 1;
-scene.add(model.scene);  // TODO @TheEnquirer not sure how to meshify this
+//model.scene.children[2].visible = false;
+console.log(model.scene.children[2])
+
+
+//scene.add(model.scene);  // TODO @TheEnquirer not sure how to meshify this
+
+const defaultCube = new ClickableObject(
+    model.scene.children[2], () => {console.log("the defaultCube!")}
+)
+defaultCube.mesh.position.y = 3;
+
 
 const cubemesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
@@ -61,7 +71,7 @@ window.addEventListener('keyup', onDocumentKeyUp, false);
 let up = false;
 let down = false;
 function onDocumentKeyDown( e ) {
-    console.log(e)
+    //console.log(e)
     if (e.which == 81) {
 	up = true;
     }
@@ -93,6 +103,7 @@ function onDocumentMouseDown( event ) {
     var intersects = raycaster.intersectObjects( scene.children );
     //console.log(intersects[0]);
     if ( intersects.length > 0 ) {
+	//console.log(intersects, "intersects!")
 	intersects[0].object.callback(event);
 }}
 
@@ -108,15 +119,18 @@ function animate() {
     //console.log(flying)
     if (up) {
 	camera.position.y += 0.1;
+	//defaultCube.mesh.visible = true;
     }
 
     if (down) {
 	camera.position.y -= 0.1;
+	//defaultCube.mesh.visible = false;
     }
     // event handling
 
     //cube.rotation.x += 0.01;
     cube.mesh.rotation.y += 0.01;
+    defaultCube.mesh.rotation.y -= 0.01;
     renderer.render( scene, camera );
 }
 animate();
