@@ -2,11 +2,16 @@
 
 import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.135.0-pjGUcRG9Xt70OdXl97VF/mode=imports/optimized/three.js';
 import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/FirstPersonControls.js';
+import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
 //import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
 
+const loader = new GLTFLoader();
 const scene = new THREE.Scene(); // init scene
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); // init camera
 const clock = new THREE.Clock();
+
+const light = new THREE.AmbientLight(0x404040);
+scene.add(light);
 
 const renderer = new THREE.WebGLRenderer(); // init renderer
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -30,6 +35,17 @@ class ClickableObject {
     }
 }
 
+const model = await new Promise((res, rej) => {
+    loader.load('models/histesting.glb', gltf => {
+        console.log('got', gltf);
+        res(gltf);
+    }, undefined, rej);
+});
+model.scene.scale.x = 1;
+model.scene.scale.y = 1;
+model.scene.scale.z = 1;
+model.scene.position.x = 1;
+scene.add(model.scene);  // TODO @TheEnquirer not sure how to meshify this
 
 const cubemesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
