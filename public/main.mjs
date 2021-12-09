@@ -86,6 +86,7 @@ window.addEventListener('keyup', onDocumentKeyUp, false);
 let up = false;
 let down = false;
 let fasterTurn = false;
+let lockTurn = false;
 function onDocumentKeyDown( e ) {
     //console.log(e)
     if (e.which == 81) {
@@ -94,6 +95,8 @@ function onDocumentKeyDown( e ) {
 	down = true;
     } else if (e.which == 16) {
 	fasterTurn = true;
+    } else if (e.which == 91) {
+	lockTurn = true;
     }
 }
 
@@ -104,6 +107,8 @@ function onDocumentKeyUp( e ) {
 	down = false;
     } else if (e.which == 16) {
 	fasterTurn = false;
+    } else if (e.which == 91) {
+	lockTurn = false;
     }
 }
 
@@ -134,7 +139,7 @@ camera.position.z = 5;
 function animate() {
     requestAnimationFrame( animate );
     renderer.setSize( window.innerWidth, window.innerHeight );
-    controls.update( clock.getDelta() );
+    if (lockTurn) { controls.activeLook = false } else { controls.activeLook = true }
     //console.log(flying)
     if (up) { camera.position.y += 0.1; }
 
@@ -146,6 +151,8 @@ function animate() {
     //cube.rotation.x += 0.01;
     cube.mesh.rotation.y += 0.01;
     defaultCube.mesh.rotation.y -= 0.01;
+
+    controls.update( clock.getDelta() );
     renderer.render( scene, camera );
 }
 animate();
