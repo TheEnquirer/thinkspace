@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "http-server": "^14.0.0",
     "three": "^0.135.0",
     "three.interaction": "^0.2.3"
   }

@@ -2,7 +2,14 @@
 
 import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.135.0-pjGUcRG9Xt70OdXl97VF/mode=imports/optimized/three.js';
 import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/FirstPersonControls.js';
+
+import { Sky } from 'https://cdn.skypack.dev/three/examples/jsm/objects/Sky.js'
+
 import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
+
+
+import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
+
 //import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
 
 const loader = new GLTFLoader();
@@ -13,9 +20,10 @@ const clock = new THREE.Clock();
 const light = new THREE.AmbientLight(0x404040);
 scene.add(light);
 
-const renderer = new THREE.WebGLRenderer(); // init renderer
+const renderer = new THREE.WebGLRenderer({antialias: true}); // init renderer
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
+let sky, sun;
 
 
 let controls = new FirstPersonControls( camera, renderer.domElement );
@@ -33,7 +41,70 @@ controls.lookSpeed = 0.05;
             controls.activeLook = true;
         }
     })
+
+
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0.5;
 })();
+
+
+function initSky() {
+
+    // Add Sky
+    sky = new Sky();
+    sky.scale.setScalar( 450000 );
+    scene.add( sky );
+
+    sun = new THREE.Vector3();
+
+    /// GUI
+
+    const effectController = {
+	turbidity: 10,
+	rayleigh: 3,
+	mieCoefficient: 0.005,
+	mieDirectionalG: 0.7,
+	elevation: 2,
+	azimuth: 180,
+	exposure: renderer.toneMappingExposure
+    };
+
+    function guiChanged() {
+
+	const uniforms = sky.material.uniforms;
+	uniforms[ 'turbidity' ].value = effectController.turbidity;
+	uniforms[ 'rayleigh' ].value = effectController.rayleigh;
+	uniforms[ 'mieCoefficient' ].value = effectController.mieCoefficient;
+	uniforms[ 'mieDirectionalG' ].value = effectController.mieDirectionalG;
+
+	const phi = THREE.MathUtils.degToRad( 90 - effectController.elevation );
+	const theta = THREE.MathUtils.degToRad( effectController.azimuth );
+
+	sun.setFromSphericalCoords( 1, phi, theta );
+
+	uniforms[ 'sunPosition' ].value.copy( sun );
+
+	renderer.toneMappingExposure = effectController.exposure;
+	renderer.render( scene, camera );
+
+    }
+
+    //const gui = new GUI();
+
+    //gui.add( effectController, 'turbidity', 0.0, 20.0, 0.1 ).onChange( guiChanged );
+    //gui.add( effectController, 'rayleigh', 0.0, 4, 0.001 ).onChange( guiChanged );
+    //gui.add( effectController, 'mieCoefficient', 0.0, 0.1, 0.001 ).onChange( guiChanged );
+    //gui.add( effectController, 'mieDirectionalG', 0.0, 1, 0.001 ).onChange( guiChanged );
+    //gui.add( effectController, 'elevation', 0, 90, 0.1 ).onChange( guiChanged );
+    //gui.add( effectController, 'azimuth', - 180, 180, 0.1 ).onChange( guiChanged );
+    //gui.add( effectController, 'exposure', 0, 1, 0.0001 ).onChange( guiChanged );
+
+    guiChanged();
+
+}
+initSky()
+
 
 // MESHES
 
@@ -49,7 +120,7 @@ class ClickableObject {
 }
 
 const model = await new Promise((res, rej) => {
-    loader.load('models/histesting.glb', gltf => {
+    loader.load('models/untitled.glb', gltf => {
         console.log('got', gltf);
         res(gltf);
     }, undefined, rej);
@@ -150,7 +221,7 @@ function animate() {
 
     //cube.rotation.x += 0.01;
     cube.mesh.rotation.y += 0.01;
-    defaultCube.mesh.rotation.y -= 0.01;
+    //defaultCube.mesh.rotation.y -= 0.01;
 
     controls.update( clock.getDelta() );
     renderer.render( scene, camera );
