@@ -23,7 +23,7 @@ scene.add(light);
 const renderer = new THREE.WebGLRenderer({antialias: true}); // init renderer
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
-let sky, sun;
+let sky, sun, material;
 
 
 let controls = new FirstPersonControls( camera, renderer.domElement );
@@ -47,6 +47,34 @@ controls.lookSpeed = 0.05;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 0.5;
 })();
+
+
+(() => {
+    scene.fog = new THREE.FogExp2( '#9babbb', 0.003 );
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+
+    for ( let i = 0; i < 10000; i ++ ) {
+
+	const x = 3000 * Math.random() - 1000;
+	const y = 3000 * Math.random() - 1000;
+	const z = 3000 * Math.random() - 1000;
+
+	vertices.push( x, y, z );
+
+    }
+    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
+    const sprite = new THREE.TextureLoader().load( 'models/dust.png' );
+
+
+    material = new THREE.PointsMaterial( { size: 5, sizeAttenuation: true, map: sprite, alphaTest: 0.5, transparent: true } );
+    material.color.setHSL( 1.0, 0.3, 0.7 );
+
+    const particles = new THREE.Points( geometry, material );
+    scene.add( particles );
+
+})();
+
 
 
 function initSky() {
@@ -90,15 +118,6 @@ function initSky() {
 
     }
 
-    //const gui = new GUI();
-
-    //gui.add( effectController, 'turbidity', 0.0, 20.0, 0.1 ).onChange( guiChanged );
-    //gui.add( effectController, 'rayleigh', 0.0, 4, 0.001 ).onChange( guiChanged );
-    //gui.add( effectController, 'mieCoefficient', 0.0, 0.1, 0.001 ).onChange( guiChanged );
-    //gui.add( effectController, 'mieDirectionalG', 0.0, 1, 0.001 ).onChange( guiChanged );
-    //gui.add( effectController, 'elevation', 0, 90, 0.1 ).onChange( guiChanged );
-    //gui.add( effectController, 'azimuth', - 180, 180, 0.1 ).onChange( guiChanged );
-    //gui.add( effectController, 'exposure', 0, 1, 0.0001 ).onChange( guiChanged );
 
     guiChanged();
 
@@ -139,7 +158,7 @@ console.log(model.scene.children[2])
 const defaultCube = new ClickableObject(
     model.scene.children[2], () => {console.log("the defaultCube!")}
 )
-defaultCube.mesh.position.y = 3;
+defaultCube.mesh.position.y = -1;
 
 
 const cubemesh = new THREE.Mesh(
