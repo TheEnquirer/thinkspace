@@ -128,9 +128,40 @@ initSky()
 
 // comments
 const addComment = () => {
+    let message = prompt("ayo what u wanna say", "NONE");
     console.log("adding a comment!");
+    const commentMesh = new THREE.Mesh(
+	new THREE.BoxGeometry(0.5, 0.5, 0.5),
+	new THREE.MeshBasicMaterial({ color: "#faf7bc" }),
+    );
+
+    //commentMesh.position.x = camera.position.x 
+    //commentMesh.position.y = camera.position.y
+    //commentMesh.position.z = camera.position.z
+    //camera.add(commentMesh);
+    //commentMesh.position.set(0,0,10);
+    updatePositionForCamera(camera, commentMesh)
+
+
+    const commentCube = new ClickableObject(
+	commentMesh, () => {console.log(message)}
+    )
+
 }
 
+function updatePositionForCamera(camera, obj) {
+    // fixed distance from camera to the object
+    var dist = 3;
+    var cwd = new THREE.Vector3();
+
+    camera.getWorldDirection(cwd);
+
+    cwd.multiplyScalar(dist);
+    cwd.add(camera.position);
+
+    obj.position.set(cwd.x, cwd.y, cwd.z);
+    obj.setRotationFromQuaternion(camera.quaternion);
+}
 
 
 
@@ -139,7 +170,7 @@ const addComment = () => {
 class ClickableObject {
     constructor(mesh, callback) {
 	this.mesh = mesh;
-	this.callback = callback;
+	this.callback = () => { camera.translateZ( 0.8 ); callback() }
 
 	scene.add( this.mesh );
 	this.mesh.cursor = 'pointer';
@@ -165,7 +196,7 @@ console.log(model.scene.children[2])
 // @exr0n done :)
 
 const defaultCube = new ClickableObject(
-    model.scene.children[2], () => {console.log("the defaultCube!")}
+    model.scene.children[2], () => { console.log("the defaultCube!") }
 )
 defaultCube.mesh.position.y = -1;
 
@@ -174,6 +205,7 @@ const cubemesh = new THREE.Mesh(
   new THREE.BoxGeometry(1, 1, 1),
   new THREE.MeshBasicMaterial({ color: 0xffffff }),
 );
+
 const cube = new ClickableObject(
     cubemesh, () => {console.log("testin")}
 )
@@ -242,6 +274,7 @@ document.addEventListener('resize', e => {
 
 
 camera.position.z = 5;
+scene.add(camera)
 
 
 // ANIMATION LOOP
