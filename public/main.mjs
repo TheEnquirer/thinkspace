@@ -25,7 +25,6 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 let sky, sun, material;
 
-
 let controls = new FirstPersonControls( camera, renderer.domElement );
 controls.movementSpeed = 10;
 controls.lookSpeed = 0.05;
@@ -49,7 +48,8 @@ controls.lookSpeed = 0.05;
 })();
 
 
-(() => {
+// adding particles
+(() => { 
     scene.fog = new THREE.FogExp2( '#9babbb', 0.003 );
     const geometry = new THREE.BufferGeometry();
     const vertices = [];
@@ -76,7 +76,7 @@ controls.lookSpeed = 0.05;
 })();
 
 
-
+// initialize the sky
 function initSky() {
 
     // Add Sky
@@ -125,6 +125,15 @@ function initSky() {
 initSky()
 
 
+
+// comments
+const addComment = () => {
+    console.log("adding a comment!");
+}
+
+
+
+
 // MESHES
 
 class ClickableObject {
@@ -170,6 +179,7 @@ const cube = new ClickableObject(
 )
 
 
+// events
 window.addEventListener('keydown', onDocumentKeyDown, false);
 window.addEventListener('keyup', onDocumentKeyUp, false);
 
@@ -187,6 +197,8 @@ function onDocumentKeyDown( e ) {
 	fasterTurn = true;
     } else if (e.which == 91) {
 	lockTurn = true;
+    } else if (e.which == 67) {
+	addComment();
     }
 }
 
@@ -220,6 +232,14 @@ function onDocumentMouseDown( event ) {
 	intersects[0].object.callback(event);
 }}
 
+document.addEventListener('resize', e => {
+    // TODO handle resizes
+    console.log('resized!')
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    controls.handleResize();
+});
+
+
 
 camera.position.z = 5;
 
@@ -247,11 +267,4 @@ function animate() {
 }
 animate();
 
-
-document.addEventListener('resize', e => {
-    // TODO handle resizes
-    console.log('resized!')
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    controls.handleResize();
-});
 
