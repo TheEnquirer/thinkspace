@@ -195,48 +195,76 @@ class ClickableObject {
 }
 
 
-const cubemesh = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshStandardMaterial({ color: 0xcccccc }),
-);
+//const cubemesh = new THREE.Mesh(
+//    new THREE.BoxGeometry(1, 1, 1),
+//    new THREE.MeshStandardMaterial({ color: 0xcccccc }),
+//);
+//
+//const cube = new ClickableObject(
+//    cubemesh, () => { console.log("cube clilcked") }
+//)
 
-const cube = new ClickableObject(
-    cubemesh, () => { console.log("cube clilcked") }
-)
+const geofenced = (() => {
+    const nodes = [
+        { x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+        { x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+        { x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
+    ]
 
-let geofenced = [];    // read only
-geofenced.push({
-    mesh: cubemesh,
-    content: '# amazing \n\n**cool**.',
-});
+    let geofenced = nodes.map(n => ({
+        mesh: new THREE.Mesh(
+            new THREE.BoxGeometry(n.size, n.size, n.size),
+            new THREE.MeshStandardMaterial({ color: 0xcccccc }),
+        ),
+        content: n.content,
+        data: n
+    }));
+
+    for (let n of geofenced) {
+        n.mesh.position.x = n.data.x;
+        n.mesh.position.y = n.data.y;
+        n.mesh.position.z = 1;
+        console.log(n.mesh)
+        //n.mesh.up.x = 1;
+        //n.mesh.up.y = 1;
+        //n.mesh.up.z = 1;
+        scene.add( n.mesh );
+    };
+
+    return geofenced;
+})();
+//console.log(geofenced);
 
 // events
-window.addEventListener('keydown', onDocumentKeyDown, false);
-window.addEventListener('keyup', onDocumentKeyUp, false);
+let [ up, down ] = (() => {
+    window.addEventListener('keydown', onDocumentKeyDown, false);
+    window.addEventListener('keyup', onDocumentKeyUp, false);
 
-let up = false;
-let down = false;
-function onDocumentKeyDown( e ) {
-    if (e.which == 81) {
-        up = true;
-    } else if (e.which == 69) {
-        down = true;
-    } else if (e.which == 67) {
-        addComment();
-    } else if (e.key === 'Shift') {
-        controls.enabled = true;
+    let up = false;
+    let down = false;
+    function onDocumentKeyDown( e ) {
+        if (e.which == 81) {
+            up = true;
+        } else if (e.which == 69) {
+            down = true;
+        } else if (e.which == 67) {
+            addComment();
+        } else if (e.key === 'Shift') {
+            controls.enabled = true;
+        }
     }
-}
 
-function onDocumentKeyUp( e ) {
-    if (e.which == 81) {
-        up = false;
-    } else if (e.which == 69) {
-        down = false;
-    } else if (e.key === 'Shift') {
-        controls.enabled = false;
+    function onDocumentKeyUp( e ) {
+        if (e.which == 81) {
+            up = false;
+        } else if (e.which == 69) {
+            down = false;
+        } else if (e.key === 'Shift') {
+            controls.enabled = false;
+        }
     }
-}
+    return [ up, down ];
+})();
 
 let hovered_object = null;
 function updateHoveredObject() {
@@ -262,13 +290,6 @@ function onDocumentMouseDown( event ) {
     updateHoveredObject();
     if (hovered_object !== null && !controls.enabled) 
         hovered_object.object.callback(event);
-    //raycaster.setFromCamera( mouse, camera );
-    //if (!controls.enabled) for (let obj of raycaster.intersectObjects( scene.children )) {
-    //    if (obj.distance < CLICK_DISTANCE && typeof obj.object.callback === 'function') {
-    //        obj.object.callback(event)
-    //        break;
-    //    }
-    //}
 }
 
 document.addEventListener('resize', e => {
@@ -315,10 +336,15 @@ function animate() {
     // event handling
 
     //cube.rotation.x += 0.01;
-    cube.mesh.rotation.y += 0.01;
-    cube.mesh.rotation.x += 0.001;
+    //cube.mesh.rotation.y += 0.01;
+    //cube.mesh.rotation.x += 0.001;
     //defaultCube.mesh.rotation.y -= 0.01;
     
+    // spin all modal cubes
+    for (let n of geofenced) {
+        n.mesh.rotation.y += 0.005;
+    }
+
     // highlight nearest modal object
     // TODO: is there a better way of finding the nearest object?
     (() => {
@@ -333,6 +359,7 @@ function animate() {
             }
         }
         if (nearest !== null && min_dist <= MODAL_DISTANCE) {
+            nearest.mesh.rotation.y += 0.01
             modalManager.update_target(nearest);
         } else {
             modalManager.update_target(null);
