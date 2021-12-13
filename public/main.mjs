@@ -20,6 +20,7 @@ const clock = new THREE.Clock();
 
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
+const MOVE_SPEED = 0.2;
 
 ///////////////////////////////////////
 //                                   //
@@ -159,8 +160,9 @@ const addComment = () => {
     let message = prompt("ayo what u wanna say", "NONE");
     console.log("adding a comment!");
     const commentMesh = new THREE.Mesh(
-	new THREE.BoxGeometry(0.5, 0.5, 0.5),
-	new THREE.MeshBasicMaterial({ color: "#faf7bc" }),
+	//new THREE.BoxGeometry(0.5, 0.5, 0.5),
+	new THREE.OctahedronGeometry(0.5),
+	new THREE.MeshStandardMaterial({ color: "#5DE7DA" }),
     );
 
     //commentMesh.position.x = camera.position.x 
@@ -251,35 +253,54 @@ const geofenced = (() => {
 //console.log(geofenced);
 
 // events
-let [ up, down ] = (() => {
-    window.addEventListener('keydown', onDocumentKeyDown, false);
-    window.addEventListener('keyup', onDocumentKeyUp, false);
+window.addEventListener('keydown', onDocumentKeyDown, false);
+window.addEventListener('keyup', onDocumentKeyUp, false);
 
-    let up = false;
-    let down = false;
-    function onDocumentKeyDown( e ) {
-        if (e.which == 81) {
-            up = true;
-        } else if (e.which == 69) {
-            down = true;
-        } else if (e.which == 67) {
-            addComment();
-        } else if (e.key === 'Shift') {
-            controls.enabled = true;
-        }
+let up = false;
+let down = false;
+let manual_move = true;
+let moving = [0, 0, 0, 0]
+function onDocumentKeyDown( e ) {
+    if (e.which == 81) {
+        up = true;
+    } else if (e.which == 69) {
+        down = true;
+    } else if (e.which == 67) {
+        addComment();
+    } else if (e.key === 'Shift') {
+        controls.enabled = true;
+	manual_move = false;
+    } else if (e.which == 87) {
+	moving[0] = 1;
+    } else if (e.which == 65) {
+	moving[1] = 1;
+    } else if (e.which == 83) {
+	moving[2] = 1;
+    } else if (e.which == 68) {
+	moving[3] = 1;
     }
 
-    function onDocumentKeyUp( e ) {
-        if (e.which == 81) {
-            up = false;
-        } else if (e.which == 69) {
-            down = false;
-        } else if (e.key === 'Shift') {
-            controls.enabled = false;
-        }
+
+}
+
+function onDocumentKeyUp( e ) {
+    if (e.which == 81) {
+        up = false;
+    } else if (e.which == 69) {
+        down = false;
+    } else if (e.key === 'Shift') {
+        controls.enabled = false;
+	manual_move = true;
+    } else if (e.which == 87) {
+	moving[0] = 0;
+    } else if (e.which == 65) {
+	moving[1] = 0;
+    } else if (e.which == 83) {
+	moving[2] = 0;
+    } else if (e.which == 68) {
+	moving[3] = 0;
     }
-    return [ up, down ];
-})();
+};
 
 let hovered_object = null;
 function updateHoveredObject() {
@@ -303,7 +324,7 @@ function onDocumentMouseDown( event ) {
     mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
 
     updateHoveredObject();
-    if (hovered_object !== null && !controls.enabled) 
+    if (hovered_object !== null && !controls.enabled)
         hovered_object.object.callback(event);
 }
 
@@ -349,6 +370,12 @@ function animate(timestamp) {
 
     if (up) { camera.position.y += 0.1; }
     if (down) { camera.position.y -= 0.1; }
+    if (manual_move) {
+	if (moving[0]) { camera.translateZ(  -MOVE_SPEED ) }
+	if (moving[1]) { camera.translateX(  -MOVE_SPEED ) }
+	if (moving[2]) { camera.translateZ(  MOVE_SPEED  ) }
+	if (moving[3]) { camera.translateX(  MOVE_SPEED  ) }
+    }
 
     //if (fasterTurn) { controls.lookSpeed = 0.3 } else { controls.lookSpeed = 0.1 }
     // event handling
