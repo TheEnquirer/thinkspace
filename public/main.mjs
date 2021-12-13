@@ -6,6 +6,8 @@ import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/
 import { Sky } from 'https://cdn.skypack.dev/three/examples/jsm/objects/Sky.js'
 
 import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
+import { FontLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometries/TextGeometry.js';
 
 
 import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
@@ -55,6 +57,14 @@ const controls = (() => {
     controls.enabled = false;
     return controls;
 })();
+
+const droid_sans_bold = await (async () => {
+    const loader = new FontLoader();
+    return new Promise((res, rej) => {
+        loader.load( 'https://cdn.skypack.dev/three/examples/fonts/droid/droid_sans_bold.typeface.json', res, undefined, rej);
+    });
+})();
+
 function initSky() {
 
     // Add Sky
@@ -211,6 +221,15 @@ const geofenced = (() => {
         { x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
 
+    const font_geometry = new TextGeometry( 'Hello three.js!', {
+		font: droid_sans_bold,
+		size: 0.3,
+		height: 0.01,
+		curveSegments: 12,
+	} );
+    const font_mesh = new THREE.Mesh(font_geometry, new THREE.MeshStandardMaterial({ color: 0x326ccc }));
+    scene.add( font_mesh )
+
     let geofenced = nodes.map(n => ({
         mesh: new THREE.Mesh(
             new THREE.BoxGeometry(n.size, n.size, n.size),
@@ -303,7 +322,10 @@ class ModalManager {
     update_target(obj) {
         if (obj === this.target) return;
         // TODO: cant get glowing working
-        if (this.target !== null) this.target.mesh.material.color.setHex(0xcccccc);
+        if (this.target !== null) {
+            this.target.mesh.material.color.setHex(0xcccccc);
+            this.target.mesh.position.y = 1;
+        }
         this.target = obj;
         if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
         this.update_content();
@@ -321,7 +343,7 @@ class ModalManager {
 const modalManager = new ModalManager;
 
 // ANIMATION LOOP
-function animate() {
+function animate(timestamp) {
     requestAnimationFrame( animate );
     renderer.setSize( window.innerWidth, window.innerHeight );
 
@@ -356,6 +378,7 @@ function animate() {
         }
         if (nearest !== null && min_dist <= MODAL_DISTANCE) {
             nearest.mesh.rotation.y += 0.01
+            nearest.mesh.position.y += Math.sin(timestamp/500)/100;
             modalManager.update_target(nearest);
         } else {
             modalManager.update_target(null);
