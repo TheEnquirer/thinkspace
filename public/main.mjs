@@ -206,16 +206,6 @@ class ClickableObject {
     }
 }
 
-
-//const cubemesh = new THREE.Mesh(
-//    new THREE.BoxGeometry(1, 1, 1),
-//    new THREE.MeshStandardMaterial({ color: 0xcccccc }),
-//);
-//
-//const cube = new ClickableObject(
-//    cubemesh, () => { console.log("cube clilcked") }
-//)
-
 const geofenced = (() => {
     const nodes = [
         { x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
@@ -225,11 +215,11 @@ const geofenced = (() => {
 
     const font_geometry = new TextGeometry( 'Hello three.js!', {
 		font: droid_sans_bold,
-		size: 0.3,
+		size: 0.2,
 		height: 0.01,
 		curveSegments: 12,
 	} );
-    const font_mesh = new THREE.Mesh(font_geometry, new THREE.MeshStandardMaterial({ color: 0x326ccc }));
+    const font_mesh = new THREE.Mesh(font_geometry, new THREE.MeshStandardMaterial({ color: 0x3333dd }));
     scene.add( font_mesh )
 
     let geofenced = nodes.map(n => ({
