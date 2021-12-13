@@ -56,11 +56,11 @@ controls.lookSpeed = 0.05;
 
     for ( let i = 0; i < 10000; i ++ ) {
 
-	const x = 3000 * Math.random() - 1000;
-	const y = 3000 * Math.random() - 1000;
-	const z = 3000 * Math.random() - 1000;
+        const x = 3000 * Math.random() - 1000;
+        const y = 3000 * Math.random() - 1000;
+        const z = 3000 * Math.random() - 1000;
 
-	vertices.push( x, y, z );
+        vertices.push( x, y, z );
 
     }
     geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ) );
@@ -89,32 +89,32 @@ function initSky() {
     /// GUI
 
     const effectController = {
-	turbidity: 10,
-	rayleigh: 3,
-	mieCoefficient: 0.005,
-	mieDirectionalG: 0.7,
-	elevation: 2,
-	azimuth: 180,
-	exposure: renderer.toneMappingExposure
+        turbidity: 10,
+        rayleigh: 3,
+        mieCoefficient: 0.005,
+        mieDirectionalG: 0.7,
+        elevation: 2,
+        azimuth: 180,
+        exposure: renderer.toneMappingExposure
     };
 
     function guiChanged() {
 
-	const uniforms = sky.material.uniforms;
-	uniforms[ 'turbidity' ].value = effectController.turbidity;
-	uniforms[ 'rayleigh' ].value = effectController.rayleigh;
-	uniforms[ 'mieCoefficient' ].value = effectController.mieCoefficient;
-	uniforms[ 'mieDirectionalG' ].value = effectController.mieDirectionalG;
+        const uniforms = sky.material.uniforms;
+        uniforms[ 'turbidity' ].value = effectController.turbidity;
+        uniforms[ 'rayleigh' ].value = effectController.rayleigh;
+        uniforms[ 'mieCoefficient' ].value = effectController.mieCoefficient;
+        uniforms[ 'mieDirectionalG' ].value = effectController.mieDirectionalG;
 
-	const phi = THREE.MathUtils.degToRad( 90 - effectController.elevation );
-	const theta = THREE.MathUtils.degToRad( effectController.azimuth );
+        const phi = THREE.MathUtils.degToRad( 90 - effectController.elevation );
+        const theta = THREE.MathUtils.degToRad( effectController.azimuth );
 
-	sun.setFromSphericalCoords( 1, phi, theta );
+        sun.setFromSphericalCoords( 1, phi, theta );
 
-	uniforms[ 'sunPosition' ].value.copy( sun );
+        uniforms[ 'sunPosition' ].value.copy( sun );
 
-	renderer.toneMappingExposure = effectController.exposure;
-	renderer.render( scene, camera );
+        renderer.toneMappingExposure = effectController.exposure;
+        renderer.render( scene, camera );
 
     }
 
@@ -129,12 +129,12 @@ initSky()
 
 class ClickableObject {
     constructor(mesh, callback) {
-	this.mesh = mesh;
-	this.callback = callback;
+        this.mesh = mesh;
+        this.callback = callback;
 
-	scene.add( this.mesh );
-	this.mesh.cursor = 'pointer';
-	this.mesh.callback = this.callback;
+        scene.add( this.mesh );
+        this.mesh.cursor = 'pointer';
+        this.mesh.callback = this.callback;
     }
 }
 
@@ -162,8 +162,8 @@ defaultCube.mesh.position.y = -1;
 
 
 const cubemesh = new THREE.Mesh(
-  new THREE.BoxGeometry(1, 1, 1),
-  new THREE.MeshBasicMaterial({ color: 0xffffff }),
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xffffff }),
 );
 const cube = new ClickableObject(
     cubemesh, () => {console.log("testin")}
@@ -180,25 +180,25 @@ let lockTurn = false;
 function onDocumentKeyDown( e ) {
     //console.log(e)
     if (e.which == 81) {
-	up = true;
+        up = true;
     } else if (e.which == 69) {
-	down = true;
+        down = true;
     } else if (e.which == 16) {
-	fasterTurn = true;
+        fasterTurn = true;
     } else if (e.which == 91) {
-	lockTurn = true;
+        lockTurn = true;
     }
 }
 
 function onDocumentKeyUp( e ) {
     if (e.which == 81) {
-	up = false;
+        up = false;
     } else if (e.which == 69) {
-	down = false;
+        down = false;
     } else if (e.which == 16) {
-	fasterTurn = false;
+        fasterTurn = false;
     } else if (e.which == 91) {
-	lockTurn = false;
+        lockTurn = false;
     }
 }
 
@@ -216,9 +216,10 @@ function onDocumentMouseDown( event ) {
     var intersects = raycaster.intersectObjects( scene.children );
     //console.log(intersects[0]);
     if ( intersects.length > 0 ) {
-	//console.log(intersects, "intersects!")
-	intersects[0].object.callback(event);
-}}
+        //console.log(intersects, "intersects!")
+        intersects[0].object.callback(event);
+    }
+}
 
 
 camera.position.z = 5;
