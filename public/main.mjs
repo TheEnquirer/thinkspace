@@ -222,12 +222,8 @@ const geofenced = (() => {
 
     for (let n of geofenced) {
         n.mesh.position.x = n.data.x;
-        n.mesh.position.y = n.data.y;
-        n.mesh.position.z = 1;
-        console.log(n.mesh)
-        //n.mesh.up.x = 1;
-        //n.mesh.up.y = 1;
-        //n.mesh.up.z = 1;
+        n.mesh.position.z = n.data.y;
+        n.mesh.position.y = 1;
         scene.add( n.mesh );
     };
 
