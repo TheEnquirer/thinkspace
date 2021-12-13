@@ -152,7 +152,7 @@ const addComment = () => {
     const commentMesh = new THREE.Mesh(
 	//new THREE.BoxGeometry(0.5, 0.5, 0.5),
 	new THREE.OctahedronGeometry(0.5),
-	new THREE.MeshStandardMaterial({ color: "#5DE7DA" }),
+	new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
     );
 
     //commentMesh.position.x = camera.position.x 
