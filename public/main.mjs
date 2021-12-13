@@ -10,6 +10,9 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/G
 
 import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
 
+import Testing from './database_manager.js';
+
+
 //import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
 
 const loader = new GLTFLoader();
@@ -259,9 +262,9 @@ function onDocumentKeyDown( e ) {
 	moving[2] = 1;
     } else if (e.which == 68) {
 	moving[3] = 1;
+    } else if (e.which == 84) { // testing!
+	Testing();
     }
-
-
 }
 
 function onDocumentKeyUp( e ) {
