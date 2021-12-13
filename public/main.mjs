@@ -14,22 +14,31 @@ import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.mod
 
 const loader = new GLTFLoader();
 const scene = new THREE.Scene(); // init scene
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); // init camera
 const clock = new THREE.Clock();
 
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
 
+///////////////////////////////////////
+//                                   //
+//               SCENE               //
+//                                   //
+///////////////////////////////////////
+// camera
+const camera = (() => {
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+    scene.add(camera);
+    return camera;
+})();
 // lighting 
 (() => {
     const ambient_light = new THREE.AmbientLight(0x404040);
     scene.add(ambient_light);
-    const point_light = new THREE.PointLight(0xfefefe, 1, 100);
+    const point_light = new THREE.PointLight(0xffffff, 1, 100);
     point_light.position.set(0, 12, 0);
     scene.add(point_light);
 })();
-console.log('lights created');
-
 const renderer = (() => {
     const renderer = new THREE.WebGLRenderer({antialias: true}); // init renderer
     document.body.appendChild( renderer.domElement );
@@ -39,8 +48,6 @@ const renderer = (() => {
     renderer.toneMappingExposure = 0.5;
     return renderer;
 })();
-console.log('renderer created')
-
 const controls = (() => {
     const controls = new FirstPersonControls( camera, renderer.domElement );
     controls.movementSpeed = 10;
@@ -48,8 +55,6 @@ const controls = (() => {
     controls.enabled = false;
     return controls;
 })();
-console.log('controls created');
-
 function initSky() {
 
     // Add Sky
@@ -122,12 +127,24 @@ function initSky() {
     })();
     return [ sky, sun, material ];
 }
-const [ sky, sun, material ] = initSky();
-console.log('environment initialized')
+initSky();
+const world = await (async () => {
+    const world = await new Promise((res, rej) => {
+        loader.load('models/untitled.glb', res, undefined, rej);
+    });
+    world.scene.scale.x = 1;
+    world.scene.scale.y = 1;
+    world.scene.scale.z = 1;
+    world.scene.position.y = -1;
+    scene.add(world.scene);
+    return world;
+})();
 
-
-
-// comments
+///////////////////////////////////////
+//                                   //
+//             COMMENTS              //
+//                                   //
+///////////////////////////////////////
 const addComment = () => {
     let message = prompt("ayo what u wanna say", "NONE");
     console.log("adding a comment!");
@@ -141,33 +158,29 @@ const addComment = () => {
     //commentMesh.position.z = camera.position.z
     //camera.add(commentMesh);
     //commentMesh.position.set(0,0,10);
+    function updatePositionForCamera(camera, obj) {
+        // fixed distance from camera to the object
+        var dist = 3;
+        var cwd = new THREE.Vector3();
+
+        camera.getWorldDirection(cwd);
+
+        cwd.multiplyScalar(dist);
+        cwd.add(camera.position);
+
+        obj.position.set(cwd.x, cwd.y, cwd.z);
+        obj.setRotationFromQuaternion(camera.quaternion);
+    }
     updatePositionForCamera(camera, commentMesh)
 
 
     const commentCube = new ClickableObject(
-	commentMesh, () => {console.log(message)}
-    )
-
+        commentMesh, () => {console.log(message)}
+    );
 }
-
-function updatePositionForCamera(camera, obj) {
-    // fixed distance from camera to the object
-    var dist = 3;
-    var cwd = new THREE.Vector3();
-
-    camera.getWorldDirection(cwd);
-
-    cwd.multiplyScalar(dist);
-    cwd.add(camera.position);
-
-    obj.position.set(cwd.x, cwd.y, cwd.z);
-    obj.setRotationFromQuaternion(camera.quaternion);
-}
-
-
 
 // MESHES
-
+let clickables = [];
 class ClickableObject {
     constructor(mesh, callback) {
         this.mesh = mesh;
@@ -176,38 +189,26 @@ class ClickableObject {
         scene.add( this.mesh );
         this.mesh.cursor = 'pointer';
         this.mesh.callback = this.callback;
+
+        clickables.push(this);
     }
 }
-
-const world = await (async () => {
-    const world = await new Promise((res, rej) => {
-        loader.load('models/untitled.glb', res, undefined, rej);
-    });
-    world.scene.scale.x = 1;
-    world.scene.scale.y = 1;
-    world.scene.scale.z = 1;
-    world.scene.position.x = 1;
-    return world;
-})();
-//model.scene.children[2].visible = false;
-console.log(world.scene.children[2])
-
-
-const environment = new ClickableObject(
-    world.scene.children[2], () => [ console.log("floor clicked") ]
-)
-environment.mesh.position.y = -1;
 
 
 const cubemesh = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial({ color: 0xffffff }),
+    new THREE.MeshStandardMaterial({ color: 0xcccccc }),
 );
 
 const cube = new ClickableObject(
     cubemesh, () => { console.log("cube clilcked") }
 )
 
+let geofenced = [];    // read only
+geofenced.push({
+    mesh: cubemesh,
+    content: '# amazing \n\n**cool**.',
+});
 
 // events
 window.addEventListener('keydown', onDocumentKeyDown, false);
@@ -221,7 +222,7 @@ function onDocumentKeyDown( e ) {
     } else if (e.which == 69) {
         down = true;
     } else if (e.which == 67) {
-	addComment();
+        addComment();
     } else if (e.key === 'Shift') {
         controls.enabled = true;
     }
@@ -237,6 +238,18 @@ function onDocumentKeyUp( e ) {
     }
 }
 
+let hovered_object = null;
+function updateHoveredObject() {
+    hovered_object = null;
+    raycaster.setFromCamera( mouse, camera );
+    for (let obj of raycaster.intersectObjects( scene.children )) {
+        if (obj.distance < CLICK_DISTANCE && typeof obj.object.callback === 'function') {
+            hovered_object = obj;
+            break;
+        }
+    }
+}
+
 window.addEventListener('click', onDocumentMouseDown, false);
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
@@ -246,13 +259,16 @@ function onDocumentMouseDown( event ) {
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
 
-    raycaster.setFromCamera( mouse, camera );
-    if (!controls.enabled) for (let obj of raycaster.intersectObjects( scene.children )) {
-        if (obj.distance < CLICK_DISTANCE && typeof obj.object.callback === 'function') {
-            obj.object.callback(event)
-            break;
-        }
-    }
+    updateHoveredObject();
+    if (hovered_object !== null && !controls.enabled) 
+        hovered_object.object.callback(event);
+    //raycaster.setFromCamera( mouse, camera );
+    //if (!controls.enabled) for (let obj of raycaster.intersectObjects( scene.children )) {
+    //    if (obj.distance < CLICK_DISTANCE && typeof obj.object.callback === 'function') {
+    //        obj.object.callback(event)
+    //        break;
+    //    }
+    //}
 }
 
 document.addEventListener('resize', e => {
@@ -262,11 +278,32 @@ document.addEventListener('resize', e => {
     controls.handleResize();
 });
 
-camera.position.z = 5;
-scene.add(camera)
+class ModalManager {
+    constructor() {
+        this.sidebar = document.getElementById('sidebar');
+        this.target = null;
+    }
+    update_target(obj) {
+        if (obj === this.target) return;
+        // TODO: cant get glowing working
+        if (this.target !== null) this.target.mesh.material.color.setHex(0xcccccc);
+        this.target = obj;
+        if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
+        this.update_content();
+    }
+    update_content(content = null) {
+        if (this.target === null) {
+            this.sidebar.style.display = 'none';
+        } else {
+            if (content !== null) this.target.content = content;
+            this.sidebar.style.display = 'block';
+            this.sidebar.innerHTML = marked.parse(this.target.content);
+        }
+    }
+}
+const modalManager = new ModalManager;
 
 // ANIMATION LOOP
-
 function animate() {
     requestAnimationFrame( animate );
     renderer.setSize( window.innerWidth, window.innerHeight );
@@ -279,11 +316,33 @@ function animate() {
 
     //cube.rotation.x += 0.01;
     cube.mesh.rotation.y += 0.01;
+    cube.mesh.rotation.x += 0.001;
     //defaultCube.mesh.rotation.y -= 0.01;
+    
+    // highlight nearest modal object
+    // TODO: is there a better way of finding the nearest object?
+    (() => {
+        let min_dist = null;
+        let nearest = null;
+        for (let obj of geofenced) {
+            const cam_dist = new THREE.Vector3();
+            const dist = cam_dist.subVectors(camera.position, obj.mesh.position).length();
+            if (min_dist === null || dist < min_dist) {
+                min_dist = dist;
+                nearest = obj;
+            }
+        }
+        if (nearest !== null && min_dist <= MODAL_DISTANCE) {
+            modalManager.update_target(nearest);
+        } else {
+            modalManager.update_target(null);
+        }
+    })();
+
+    updateHoveredObject();
 
     controls.update( clock.getDelta() );
     renderer.render( scene, camera );
 }
 animate();
-
 
