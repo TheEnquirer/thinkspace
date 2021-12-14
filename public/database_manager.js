@@ -7,19 +7,26 @@ const supabaseUrl = Secrets.SUPABASE_URL
 const supabaseKey = Secrets.SUPABASE_ANON_KEY
 export const supabaseClient = createClient(supabaseUrl, supabaseKey)
 
-export const addComment = async () => {
+export const addCommentToDb = async (user, text, coords, children) => {
+    console.log("adding a comment :)")
     const { d, e } = await supabaseClient
         .from('comments')
         .insert([
-            { user: "jeffery", content: {user: "jeffery", text: "heew!", children: [] } },
+            {
+		user: user,
+		text: text,
+		coords: coords,
+		children: children,
+	    },
         ])
     return e
 }
 
 
+
 // TESTING FUNCTION
 export const Testing = () => {
-    //console.log(supabaseKelsy)
+    //console.log(supabaseKey)
     addComment();
 }
 

@@ -12,7 +12,7 @@ import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometr
 
 import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
 
-import { supabaseClient, Testing } from './database_manager.js';
+import { addCommentToDb, supabaseClient, Testing } from './database_manager.js';
 
 
 //import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
@@ -24,6 +24,7 @@ const clock = new THREE.Clock();
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
 const MOVE_SPEED = 0.2;
+const USER = "john";
 
 ///////////////////////////////////////
 //                                   //
@@ -159,40 +160,41 @@ const world = await (async () => {
 //             COMMENTS              //
 //                                   //
 ///////////////////////////////////////
-const addComment = () => {
+const getPositionInfrontOfCamera = (camera) => {
+    var dist = 3;
+    var cwd = new THREE.Vector3();
+    camera.getWorldDirection(cwd);
+    cwd.multiplyScalar(dist);
+    cwd.add(camera.position);
+    return [cwd.x, cwd.y, cwd.z]
+}
+
+const initializeComment = () => {
     let message = prompt("ayo what u wanna say", "NONE");
     console.log("adding a comment!");
+    addCommentToDb(USER, message, getPositionInfrontOfCamera(camera), []);
+}
+
+const addCommentToScene = (v) => {
+
     const commentMesh = new THREE.Mesh(
-	//new THREE.BoxGeometry(0.5, 0.5, 0.5),
 	new THREE.OctahedronBufferGeometry(0.5),
 	new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
     );
 
-    //commentMesh.position.x = camera.position.x 
-    //commentMesh.position.y = camera.position.y
-    //commentMesh.position.z = camera.position.z
-    //camera.add(commentMesh);
-    //commentMesh.position.set(0,0,10);
-    function updatePositionForCamera(camera, obj) {
-        // fixed distance from camera to the object
-        var dist = 3;
-        var cwd = new THREE.Vector3();
-
-        camera.getWorldDirection(cwd);
-
-        cwd.multiplyScalar(dist);
-        cwd.add(camera.position);
-
-        obj.position.set(cwd.x, cwd.y, cwd.z);
-        obj.setRotationFromQuaternion(camera.quaternion);
-    }
-    updatePositionForCamera(camera, commentMesh)
-
+    commentMesh.position.set(...v.new.coords);
 
     const commentCube = new ClickableObject(
-        commentMesh, () => {console.log(message)}
+	commentMesh, () => { console.log(v.new.text) }
     );
 }
+
+const commentSubscription = supabaseClient
+  .from('comments')
+  .on('INSERT', payload => {
+      addCommentToScene(payload)
+  })
+  .subscribe()
 
 // MESHES
 let clickables = [];
@@ -259,7 +261,7 @@ function onDocumentKeyDown( e ) {
     } else if (e.which == 69) {
         down = true;
     } else if (e.which == 67) {
-        addComment();
+	initializeComment();
     } else if (e.key === 'Shift') {
         controls.enabled = true;
 	manual_move = false;
