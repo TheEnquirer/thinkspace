@@ -39,7 +39,7 @@ const camera = (() => {
 })();
 // lighting 
 (() => {
-    const ambient_light = new THREE.AmbientLight(0x404040);
+    const ambient_light = new THREE.AmbientLight(0x404040, 1.5);
     scene.add(ambient_light);
     const point_light = new THREE.PointLight(0xffffff, 1, 100);
     point_light.position.set(0, 12, 0);
@@ -164,7 +164,7 @@ const addComment = () => {
     console.log("adding a comment!");
     const commentMesh = new THREE.Mesh(
 	//new THREE.BoxGeometry(0.5, 0.5, 0.5),
-	new THREE.OctahedronGeometry(0.5),
+	new THREE.OctahedronBufferGeometry(0.5),
 	new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
     );
 
@@ -227,7 +227,7 @@ const geofenced = (() => {
 
     let geofenced = nodes.map(n => ({
         mesh: new THREE.Mesh(
-            new THREE.BoxGeometry(n.size, n.size, n.size),
+            new THREE.BoxBufferGeometry(n.size, n.size, n.size),
             new THREE.MeshStandardMaterial({ color: 0xcccccc }),
         ),
         content: n.content,
