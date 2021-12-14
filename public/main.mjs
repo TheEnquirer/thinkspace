@@ -161,7 +161,7 @@ const world = await (async () => {
 //                                   //
 ///////////////////////////////////////
 
-let allComments = []
+const allComments = []
 
 const getPositionInfrontOfCamera = (camera) => {
     var dist = 3;
@@ -244,11 +244,16 @@ class CommentThread {
     }
     handleClick(e) {
         active_comment = this;
+        console.log('ouch')
+        geofence_manager.updateTarget(null);
         this.beANarcissist();
     }
     beANarcissist() {
-        // TODO
-        geofence_manager.updateContent
+        modal_manager.setHTML('its comment time brrrrrrrrrrrrrr')
+    }
+    blur() {    // @TheEnquirer use this to leave a comment
+        active_comment = null;
+        modal_manager.clear();
     }
 }
 
@@ -393,13 +398,13 @@ class GeofencedModalManager {
         this.target = null;
     }
     updateTarget(obj) {
-        if (active_comment !== null) return;    // get overriden by active comment
         if (obj === this.target) return;
         // TODO: cant get glowing working
         if (this.target !== null) {
             this.target.mesh.material.color.setHex(0xcccccc);
             this.target.mesh.position.y = 1;
         }
+        if (active_comment !== null) return;    // get overriden by active comment
         this.target = obj;
         if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
         this.updateContent();

@@ -13,11 +13,11 @@ export const addCommentToDb = async (user, text, coords, children) => {
         .from('comments')
         .insert([
             {
-		user: user,
-		text: text,
-		coords: coords,
-		children: children,
-	    },
+                user: user,
+                text: text,
+                coords: coords,
+                children: children,
+            },
         ])
     return e
 }
