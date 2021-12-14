@@ -160,6 +160,9 @@ const world = await (async () => {
 //             COMMENTS              //
 //                                   //
 ///////////////////////////////////////
+
+let allComments = []
+
 const getPositionInfrontOfCamera = (camera) => {
     var dist = 3;
     var cwd = new THREE.Vector3();
@@ -176,17 +179,18 @@ const initializeComment = () => {
 }
 
 const addCommentToScene = (v) => {
-
     const commentMesh = new THREE.Mesh(
 	new THREE.OctahedronBufferGeometry(0.5),
 	new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
     );
 
     commentMesh.position.set(...v.new.coords);
+    commentMesh.rotation.set(0, Math.random() * 10, 0);
 
     const commentCube = new ClickableObject(
 	commentMesh, () => { console.log(v.new.text) }
     );
+    allComments.push(commentCube)
 }
 
 const commentSubscription = supabaseClient
@@ -389,6 +393,11 @@ function animate(timestamp) {
 	if (moving[1]) { camera.translateX(  -MOVE_SPEED ) }
 	if (moving[2]) { camera.translateZ(  MOVE_SPEED  ) }
 	if (moving[3]) { camera.translateX(  MOVE_SPEED  ) }
+    }
+
+    for (const i of allComments) {
+	i.mesh.rotation.y += 0.0025
+	//console.log(i)
     }
 
     //if (fasterTurn) { controls.lookSpeed = 0.3 } else { controls.lookSpeed = 0.1 }
