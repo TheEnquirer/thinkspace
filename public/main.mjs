@@ -173,33 +173,18 @@ const getPositionInfrontOfCamera = (camera) => {
 }
 
 const initializeComment = () => {
-    let message = prompt("ayo what u wanna say", "NONE");
+    let message = prompt("ayo what u wanna say", "NONE"); // TODO: change
     console.log("adding a comment!");
     addCommentToDb(USER, message, getPositionInfrontOfCamera(camera), []);
 }
 
-const addCommentToScene = (v) => {
-    const commentMesh = new THREE.Mesh(
-	new THREE.OctahedronBufferGeometry(0.5),
-	new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
-    );
-
-    commentMesh.position.set(...v.new.coords);
-    commentMesh.rotation.set(0, Math.random() * 10, 0);
-
-    const commentCube = new ClickableObject(
-	commentMesh, () => { console.log(v.new.text) }
-    );
-    allComments.push(commentCube)
-}
-
-const commentSubscription = supabaseClient
+const commentCreatedSubscription = supabaseClient
   .from('comments')
   .on('INSERT', payload => {
-      addCommentToScene(payload)
-  })
-  .subscribe()
+      allComments.push(new CommentThread(payload));
+  }).subscribe();
 
+// TODO: subscribe to comment new text added
 
 const loadComments = async () => {
     const { data, error } = await supabaseClient
@@ -212,25 +197,58 @@ const loadComments = async () => {
 (async () => {
     const comments = await loadComments()
     //console.log(comments)
-    for (const i of comments) { 
-	addCommentToScene({new: i}) 
-	//console.log(i, "i")
+    for (const c of comments) { 
+        allComments.push(new CommentThread({ new: c }));
     }
 })();
 
 
 // MESHES
-let clickables = [];
-class ClickableObject {
-    constructor(mesh, callback) {
-        this.mesh = mesh;
-        this.callback = callback;
+let clickables = [];    // must implement handleClick(clickevent)
+let active_comment = null;
+//class ClickableObject {
+//    constructor(mesh, callback) {
+//        this.mesh = mesh;
+//        this.callback = callback;
+//
+//        scene.add( this.mesh );
+//        this.mesh.cursor = 'pointer';
+//        this.mesh.callback = this.callback;
+//
+//        clickables.push(this);
+//    }
+//    handleClick(e) {
+//        this.callback(e);
+//    }
+//}
+class CommentThread {
+    constructor(wtfisav) {
+        this.mesh = new THREE.Mesh(
+            new THREE.OctahedronBufferGeometry(0.5),
+            new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
+        );
 
-        scene.add( this.mesh );
+        this.mesh.position.set(...wtfisav.new.coords);
+        this.mesh.rotation.set(0, Math.random() * 10, 0);
         this.mesh.cursor = 'pointer';
-        this.mesh.callback = this.callback;
+        this.mesh.click_parent = this;
+        scene.add(this.mesh);
+
+        this.comments = [ { author: 'jeffree', content: wtfisav.new.text } ];
 
         clickables.push(this);
+    }
+    appendComment(wtfisav) {
+        this.comments.push({ author: wtfisav.author, content: wtfisav.content });
+        this.beANarcissist();
+    }
+    handleClick(e) {
+        active_comment = this;
+        this.beANarcissist();
+    }
+    beANarcissist() {
+        // TODO
+        geofence_manager.updateContent
     }
 }
 
@@ -321,11 +339,11 @@ function onDocumentKeyUp( e ) {
 };
 
 let hovered_object = null;
-function updateHoveredObject() {
+function updateHoveredObject(all_objs=scene.children) {
     hovered_object = null;
     raycaster.setFromCamera( mouse, camera );
-    for (let obj of raycaster.intersectObjects( scene.children )) {
-        if (obj.distance < CLICK_DISTANCE && typeof obj.object.callback === 'function') {
+    for (let obj of raycaster.intersectObjects( all_objs )) {
+        if (obj.distance < CLICK_DISTANCE && typeof obj.object.hasOwnProperty('click_parent')) {
             hovered_object = obj;
             break;
         }
@@ -341,9 +359,10 @@ function onDocumentMouseDown( event ) {
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
 
-    updateHoveredObject();
-    if (hovered_object !== null && !controls.enabled)
-        hovered_object.object.callback(event);
+    updateHoveredObject(clickables.map(o => o.mesh));
+    if (hovered_object !== null && !controls.enabled) {
+        hovered_object.object.click_parent.handleClick(event);
+    }
 }
 
 document.addEventListener('resize', e => {
@@ -356,9 +375,25 @@ document.addEventListener('resize', e => {
 class ModalManager {
     constructor() {
         this.sidebar = document.getElementById('sidebar');
+    }
+    setHTML(html) {
+        if (html == this.sidebar.innerHTML) return;
+        this.sidebar.style.display = 'block';
+        this.sidebar.innerHTML = html;
+    }
+    clear() {
+        this.sidebar.style.display = 'none';
+    }
+}
+const modal_manager = new ModalManager();
+
+class GeofencedModalManager {
+    constructor() {
+        this.sidebar = document.getElementById('sidebar');
         this.target = null;
     }
-    update_target(obj) {
+    updateTarget(obj) {
+        if (active_comment !== null) return;    // get overriden by active comment
         if (obj === this.target) return;
         // TODO: cant get glowing working
         if (this.target !== null) {
@@ -367,19 +402,19 @@ class ModalManager {
         }
         this.target = obj;
         if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
-        this.update_content();
+        this.updateContent();
     }
-    update_content(content = null) {
+    updateContent(content = null) {
+        if (active_comment !== null) return;
         if (this.target === null) {
-            this.sidebar.style.display = 'none';
+            modal_manager.clear();
         } else {
             if (content !== null) this.target.content = content;
-            this.sidebar.style.display = 'block';
-            this.sidebar.innerHTML = marked.parse(this.target.content);
+            modal_manager.setHTML(marked.parse(this.target.content));
         }
     }
 }
-const modalManager = new ModalManager;
+const geofence_manager = new GeofencedModalManager;
 
 // ANIMATION LOOP
 function animate(timestamp) {
@@ -395,9 +430,9 @@ function animate(timestamp) {
 	if (moving[3]) { camera.translateX(  MOVE_SPEED  ) }
     }
 
-    for (const i of allComments) {
-	i.mesh.rotation.y += 0.0025
-	//console.log(i)
+    for (const c of allComments) {
+        c.mesh.rotation.y += 0.0025
+        //console.log(i)
     }
 
     //if (fasterTurn) { controls.lookSpeed = 0.3 } else { controls.lookSpeed = 0.1 }
@@ -426,12 +461,14 @@ function animate(timestamp) {
                 nearest = obj;
             }
         }
-        if (nearest !== null && min_dist <= MODAL_DISTANCE) {
-            nearest.mesh.rotation.y += 0.01
-            nearest.mesh.position.y += Math.sin(timestamp/500)/100;
-            modalManager.update_target(nearest);
-        } else {
-            modalManager.update_target(null);
+        if (active_comment === null) {
+            if (nearest !== null && min_dist <= MODAL_DISTANCE) {
+                nearest.mesh.rotation.y += 0.01
+                nearest.mesh.position.y += Math.sin(timestamp/500)/100;
+                geofence_manager.updateTarget(nearest);
+            } else {
+                geofence_manager.updateTarget(null);
+            }
         }
     })();
 
