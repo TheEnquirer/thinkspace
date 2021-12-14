@@ -12,7 +12,7 @@ import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometr
 
 import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
 
-import Testing from './database_manager.js';
+import { supabaseClient, Testing } from './database_manager.js';
 
 
 //import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
