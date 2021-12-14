@@ -196,6 +196,25 @@ const commentSubscription = supabaseClient
   })
   .subscribe()
 
+
+const loadComments = async () => {
+    const { data, error } = await supabaseClient
+	.from('comments')
+	.select()
+    console.log(data);
+    return data
+}
+
+(async () => {
+    const comments = await loadComments()
+    //console.log(comments)
+    for (const i of comments) { 
+	addCommentToScene({new: i}) 
+	//console.log(i, "i")
+    }
+})();
+
+
 // MESHES
 let clickables = [];
 class ClickableObject {
