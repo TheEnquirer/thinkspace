@@ -145,7 +145,7 @@ function initSky() {
 initSky();
 const world = await (async () => {
     const world = await new Promise((res, rej) => {
-        loader.load('models/untitled.glb', res, undefined, rej);
+        loader.load('models/test.glb', res, undefined, rej);
     });
     world.scene.scale.x = 1;
     world.scene.scale.y = 1;
