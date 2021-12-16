@@ -206,21 +206,6 @@ const loadComments = async () => {
 // MESHES
 let clickables = [];    // must implement handleClick(clickevent)
 let active_comment = null;
-//class ClickableObject {
-//    constructor(mesh, callback) {
-//        this.mesh = mesh;
-//        this.callback = callback;
-//
-//        scene.add( this.mesh );
-//        this.mesh.cursor = 'pointer';
-//        this.mesh.callback = this.callback;
-//
-//        clickables.push(this);
-//    }
-//    handleClick(e) {
-//        this.callback(e);
-//    }
-//}
 class CommentThread {
     constructor(wtfisav) {
         this.mesh = new THREE.Mesh(
@@ -243,17 +228,20 @@ class CommentThread {
         this.beANarcissist();
     }
     handleClick(e) {
+        if (active_comment !== null) return;    // only start displaying a comment if nothing is currently active
+        console.log('currently', active_comment)
         active_comment = this;
-        console.log('ouch')
         geofence_manager.updateTarget(null);
         this.beANarcissist();
+        document.getElementsByTagName('canvas')[0]  // get the threejs canvas
+            .addEventListener('click', this.blur, { once: true });
     }
     beANarcissist() {
-        modal_manager.setHTML('its comment time brrrrrrrrrrrrrr')
+        modal_manager.setHTML(JSON.stringify(this.comments));
     }
     blur() {    // @TheEnquirer use this to leave a comment
-        active_comment = null;
         modal_manager.clear();
+        setTimeout(() => { active_comment = null; }, 1);    // TODO: scuffed as hell: delay to ensure active comment null check in handleClick goes through, to disable jumping from one comment to another directly
     }
 }
 
@@ -382,8 +370,8 @@ class ModalManager {
         this.sidebar = document.getElementById('sidebar');
     }
     setHTML(html) {
-        if (html == this.sidebar.innerHTML) return;
         this.sidebar.style.display = 'block';
+        if (html == this.sidebar.innerHTML) return;
         this.sidebar.innerHTML = html;
     }
     clear() {
