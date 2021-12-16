@@ -204,6 +204,37 @@ const loadComments = async () => {
 
 
 // MESHES
+class Comment {
+    constructor(wtfisavnew) {
+        this.author = wtfisavnew.author;
+        this.content = wtfisavnew.content || "[nothing]";
+        this.children = wtfisavnew.children.map(c => new Comment(c));
+    }
+    render() {
+        return `
+        <div class="pointer-events-auto select-auto border-red-400">
+            <div class="rounded-md p-2" style="background-color: rgba(32, 32, 32, 0.2);">
+                <span class="text-gray-200 font-mono">${this.author}</span>
+                <span class="text-gray-400 font-mono">said</span>
+                <br>
+                <div class="p-4">
+                    ${marked.parse(this.content)}
+                </div>
+            </div>
+            ${
+                this.children.length > 0 ? 
+        `<details class="pointer-events-auto select-auto"><summary>${this.children.length} repl${this.children.length > 1 ? 'ies' : 'y'}...</summary>
+            <div class="border-red-700 pl-4">
+            ${this.children.map(c => c.render()).join('\n')}
+            </div>
+            </details>
+        </div>` : ""
+            }
+        <br>
+        `;
+    }
+}
+
 let clickables = [];    // must implement handleClick(clickevent)
 let active_comment = null;
 class CommentThread {
@@ -219,7 +250,16 @@ class CommentThread {
         this.mesh.click_parent = this;
         scene.add(this.mesh);
 
-        this.comments = [ { author: 'jeffree', content: wtfisav.new.text } ];
+        //this.toplevel = new Comment(wtfisav.new);
+        this.toplevel = new Comment({ author: 'jeffree', content: wtfisav.new.text, children: [
+            { author: 'jorj', content: 'ayoooo gamer baitey?', children: [] },
+            { author: 'jorj', content: 'its me a gain buddy', children: [] },
+            { author: 'jorj', content: 'its a lonleh world out here', children: [
+                { author: 'bean', content: 'tsok bud soy bean', children: [] }
+            ] },
+            { author: 'bean', content: '...welp everyones gone now :(', children: [] },
+        ] });
+            //(({ author, content, children }) => ({ author, content, children }))(wtfisav.new); // readability 100 https://stackoverflow.com/a/39333479/10372825
 
         clickables.push(this);
     }
@@ -237,22 +277,7 @@ class CommentThread {
             .addEventListener('click', this.blur, { once: true });
     }
     beANarcissist() {
-        // react moment
-        function createDomTree({ author, content, children }) {
-            
-        }
-        const display = this.comments.map(({ author, content }) => `
-                <div class="rounded-md p-2" style="background-color: rgba(32, 32, 32, 0.2);">
-                <span class="text-gray-200 font-mono">${author}</span>
-                <span class="text-gray-400 font-mono">said</span>
-                <br>
-                    <div class="p-4">
-                        ${marked.parse(content ? content : "")}
-                    </div>
-                </div>
-            `
-        ).join('\n');
-        modal_manager.setHTML(display);
+        modal_manager.setHTML(this.toplevel.render());
     }
     blur() {    // @TheEnquirer use this to leave a comment
         modal_manager.clear();
@@ -358,7 +383,7 @@ function updateHoveredObject(all_objs=scene.children) {
     }
 }
 
-window.addEventListener('click', onDocumentMouseDown, false);
+document.getElementsByTagName('canvas')[0].addEventListener('click', onDocumentMouseDown, false);
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
