@@ -173,7 +173,7 @@ const getPositionInfrontOfCamera = (camera) => {
 }
 
 const initializeComment = () => {
-    let message = prompt("ayo what u wanna say", "NONE"); // TODO: change
+    let message = prompt("ayo wha u wanna say", "nuffin much"); // TODO: change
     console.log("adding a comment!");
     addCommentToDb(USER, message, getPositionInfrontOfCamera(camera), []);
 }
@@ -227,7 +227,7 @@ class CommentThread {
         this.comments.push({ author: wtfisav.author, content: wtfisav.content });
         this.beANarcissist();
     }
-    handleClick(e) {
+    handleClick(_) {
         if (active_comment !== null) return;    // only start displaying a comment if nothing is currently active
         console.log('currently', active_comment)
         active_comment = this;
@@ -237,7 +237,22 @@ class CommentThread {
             .addEventListener('click', this.blur, { once: true });
     }
     beANarcissist() {
-        modal_manager.setHTML(JSON.stringify(this.comments));
+        // react moment
+        function createDomTree({ author, content, children }) {
+            
+        }
+        const display = this.comments.map(({ author, content }) => `
+                <div class="rounded-md p-2" style="background-color: rgba(32, 32, 32, 0.2);">
+                <span class="text-gray-200 font-mono">${author}</span>
+                <span class="text-gray-400 font-mono">said</span>
+                <br>
+                    <div class="p-4">
+                        ${marked.parse(content ? content : "")}
+                    </div>
+                </div>
+            `
+        ).join('\n');
+        modal_manager.setHTML(display);
     }
     blur() {    // @TheEnquirer use this to leave a comment
         modal_manager.clear();
