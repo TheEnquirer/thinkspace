@@ -9,11 +9,13 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/G
 import { FontLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometries/TextGeometry.js';
 
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 
 import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
 
 import { addCommentToDb, supabaseClient, Testing } from './database_manager.js';
 
+import 'https://cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js';
 
 //import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
 
@@ -206,19 +208,35 @@ const loadComments = async () => {
 
 // MESHES
 class Comment {
-    constructor(wtfisavnew) {
+    constructor(wtfisavnew, parent_thread) {
         this.author = wtfisavnew.author;
         this.text = wtfisavnew.text || "[nothing]";
-        this.children = wtfisavnew.children?.map(c => new Comment(c)) || [];
+        this.children = wtfisavnew.children?.map(c => new Comment(c, parent_thread)) || [];
+        this.parent_thread = parent_thread;
+        this.session_id = nanoid();
+        console.log('created new comment', this.session_id)
     }
     render() {
+        // react moment
+        setTimeout(() => {
+            document.getElementById(`clickhandle-autogen-${this.session_id}`)
+                .addEventListener('click', () => {
+                    const content = 'emacs';
+                    //const content = prompt('ayo wha u wan say?');
+                    if (content === null) return;
+                    this.addReply('whos the author todo', content);
+                });
+        }, 1, { once: true });
+        // TODO: make sure event listeners are killed when events are killed, or we will memory leak to all hell
+        document.getaddEventListener
         return `
         <div class="pointer-events-auto select-auto border-red-400">
             <div class="rounded-md p-2" style="background-color: rgba(32, 32, 32, 0.2);">
                 <span class="text-gray-200 font-mono">${this.author}</span>
-                <span class="text-gray-400 font-mono">said</span>
+                <span class="text-gray-400 font-mono">said  <a id="clickhandle-autogen-${this.session_id}" class="text-xs">(reply)</a>
                 <br>
                 <div class="p-4">
+                    ${this.session_id}
                     ${marked.parse(this.text)}
                 </div>
             </div>
@@ -233,6 +251,13 @@ class Comment {
             }
         <br>
         `;
+    }
+    serialize() {
+        return { author: this.author, text: this.text, children: [this.children.map(c => c.serialize)] };
+    }
+    addReply(author, text) {
+        this.children.push(new Comment({ author: author, text, children: [], parent_thread: this.parent_thread }));
+        this.parent_thread.uploadSelf();
     }
 }
 
@@ -251,16 +276,7 @@ class CommentThread {
         this.mesh.click_parent = this;
         scene.add(this.mesh);
 
-        this.toplevel = new Comment(wtfisav.new);
-        //this.toplevel = new Comment({ author: 'jeffree', text: wtfisav.new.text, children: [
-        //    { author: 'jorj', text: 'ayoooo gamer baitey?', children: [] },
-        //    { author: 'jorj', text: 'its me a gain buddy', children: [] },
-        //    { author: 'jorj', text: 'its a lonleh world out here', children: [
-        //        { author: 'bean', text: 'tsok bud soy bean', children: [] }
-        //    ] },
-        //    { author: 'bean', text: '...welp everyones gone now :(', children: [] },
-        //] });
-            //(({ author, text, children }) => ({ author, text, children }))(wtfisav.new); // readability 100 https://stackoverflow.com/a/39333479/10372825
+        this.toplevel = new Comment(wtfisav.new, this);
 
         clickables.push(this);
     }
@@ -283,6 +299,9 @@ class CommentThread {
     blur() {    // @TheEnquirer use this to leave a comment
         modal_manager.clear();
         setTimeout(() => { active_comment = null; }, 1);    // TODO: scuffed as hell: delay to ensure active comment null check in handleClick goes through, to disable jumping from one comment to another directly
+    }
+    uploadSelf() {
+        // TODO
     }
 }
 
