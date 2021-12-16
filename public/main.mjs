@@ -145,7 +145,7 @@ function initSky() {
 initSky();
 const world = await (async () => {
     const world = await new Promise((res, rej) => {
-        loader.load('models/test.glb', res, undefined, rej);
+        loader.load('models/untitled.glb', res, undefined, rej);
     });
     world.scene.scale.x = 1;
     world.scene.scale.y = 1;
@@ -174,6 +174,7 @@ const getPositionInfrontOfCamera = (camera) => {
 
 const initializeComment = () => {
     let message = prompt("ayo wha u wanna say", "nuffin much"); // TODO: change
+    if (message === null) return;
     console.log("adding a comment!");
     addCommentToDb(USER, message, getPositionInfrontOfCamera(camera), []);
 }
@@ -207,8 +208,8 @@ const loadComments = async () => {
 class Comment {
     constructor(wtfisavnew) {
         this.author = wtfisavnew.author;
-        this.content = wtfisavnew.content || "[nothing]";
-        this.children = wtfisavnew.children.map(c => new Comment(c));
+        this.text = wtfisavnew.text || "[nothing]";
+        this.children = wtfisavnew.children?.map(c => new Comment(c)) || [];
     }
     render() {
         return `
@@ -218,7 +219,7 @@ class Comment {
                 <span class="text-gray-400 font-mono">said</span>
                 <br>
                 <div class="p-4">
-                    ${marked.parse(this.content)}
+                    ${marked.parse(this.text)}
                 </div>
             </div>
             ${
@@ -250,21 +251,21 @@ class CommentThread {
         this.mesh.click_parent = this;
         scene.add(this.mesh);
 
-        //this.toplevel = new Comment(wtfisav.new);
-        this.toplevel = new Comment({ author: 'jeffree', content: wtfisav.new.text, children: [
-            { author: 'jorj', content: 'ayoooo gamer baitey?', children: [] },
-            { author: 'jorj', content: 'its me a gain buddy', children: [] },
-            { author: 'jorj', content: 'its a lonleh world out here', children: [
-                { author: 'bean', content: 'tsok bud soy bean', children: [] }
-            ] },
-            { author: 'bean', content: '...welp everyones gone now :(', children: [] },
-        ] });
-            //(({ author, content, children }) => ({ author, content, children }))(wtfisav.new); // readability 100 https://stackoverflow.com/a/39333479/10372825
+        this.toplevel = new Comment(wtfisav.new);
+        //this.toplevel = new Comment({ author: 'jeffree', text: wtfisav.new.text, children: [
+        //    { author: 'jorj', text: 'ayoooo gamer baitey?', children: [] },
+        //    { author: 'jorj', text: 'its me a gain buddy', children: [] },
+        //    { author: 'jorj', text: 'its a lonleh world out here', children: [
+        //        { author: 'bean', text: 'tsok bud soy bean', children: [] }
+        //    ] },
+        //    { author: 'bean', text: '...welp everyones gone now :(', children: [] },
+        //] });
+            //(({ author, text, children }) => ({ author, text, children }))(wtfisav.new); // readability 100 https://stackoverflow.com/a/39333479/10372825
 
         clickables.push(this);
     }
     appendComment(wtfisav) {
-        this.comments.push({ author: wtfisav.author, content: wtfisav.content });
+        //this.comments.push({ author: wtfisav.author, text: wtfisav.text });
         this.beANarcissist();
     }
     handleClick(_) {
