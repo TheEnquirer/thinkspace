@@ -381,6 +381,38 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
 
+    const CONFLICT_OVER_SLAVERY = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    American Civil War
+    <a href="
+    https://www.nps.gov/liho/learn/historyculture/slavery-cause-civil-war.htm
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    Today, most professional historians agree with Stephens that slavery and the status of African Americans were at the heart of the crisis that plunged the U.S. into a civil war from 1861 to 1865. That is not to say that the average Confederate soldier fought to preserve slavery or that the North went to war to end slavery. Soldiers fight for many reasons — notably to stay alive and support their comrades in arms — and the North’s goal in the beginning was preservation of the Union, not emancipation. For the 200,000 African Americans who ultimately served the U.S. in the war, emancipation was the primary aim.
+
+The roots of the crisis over slavery that gripped the nation in 1860–1861 go back to the nation’s founding. European settlers brought a system of slavery with them to the western hemisphere in the 1500s. Unable to find cheap labor from other sources, white settlers increasingly turned to slaves imported from Africa. By the early 1700s in British North America, slavery meant African slavery. Southern plantations using slave labor produced the great export crops — tobacco, rice, forest products, and indigo — that made the American colonies profitable. Many Northern merchants made their fortunes either in the slave trade or by exporting the products of slave labor. African slavery was central to the development of British North America.
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.nps.gov/liho/learn/historyculture/slavery-cause-civil-war.htm
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
     const THE_CIVIL_WAR = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
@@ -437,7 +469,7 @@ The practice of slavery in the United States was one of the key political issues
         // central three themes
         { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: "todo" },
         { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: "todo" },
-        { x: - 30, z: - 15, size:  80, label: "Conflict over Slavery", content: "todo" },
+        { x: - 30, z: - 15, size:  80, label: "Conflict over Slavery", content: CONFLICT_OVER_SLAVERY },
 
         { x:   54, z: - 77, size: 120, label: "The Civil War", y: 17, content: THE_CIVIL_WAR },
     ]
