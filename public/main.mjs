@@ -144,7 +144,10 @@ function initSky() {
 initSky();
 let worldPromise = (async () => {
     const world = await new Promise((res, rej) => {
-        loader.load('models/FINAL1.glb', res, undefined, rej);
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath( 'models/draco/' );
+        loader.setDRACOLoader( dracoLoader );
+        loader.load('models/final_compressed.gltf', res, undefined, rej);
     });
     world.scene.scale.x = 1;
     world.scene.scale.y = 1;
