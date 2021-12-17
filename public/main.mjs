@@ -380,6 +380,194 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
+    
+    const EUROPEAN_IMMIGRATION = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Immigration to the US
+
+    <a href="
+	https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/immigration-to-united-states-1851-1900/
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    In the late 1800s, people in many parts of the world decided to leave their homes and immigrate to the United States. Fleeing crop failure, land and job shortages, rising taxes, and famine, many came to the U. S. because it was perceived as the land of economic opportunity. Others came seeking personal freedom or relief from political and religious persecution, and nearly 12 million immigrants arrived in the United States between 1870 and 1900. During the 1870s and 1880s, the vast majority of these people were from Germany, Ireland, and England - the principal sources of immigration before the Civil War. Even so, a relatively large group of Chinese immigrated to the United States between the start of the California gold rush in 1849 and 1882, when federal law stopped their immigration.
+
+
+
+<br>
+<br>
+
+With the onset of hard economic times in the 1870s, European immigrants and Americans began to compete for the jobs traditionally reserved for the Chinese. With economic competition came dislike and even racial suspicion and hatred. Such feelings were accompanied by anti-Chinese riots and pressure, especially in California, for the exclusion of Chinese immigrants from the United States. The result of this pressure was the Chinese Exclusion Act, passed by Congress in 1882. This Act virtually ended Chinese immigration for nearly a century.
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/immigration-to-united-states-1851-1900/
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
+    const INFLUX = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Escaped Slaves in the United States
+
+    <a href="
+	https://en.wikipedia.org/wiki/Fugitive_slaves_in_the_United_States
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    In the United States, fugitive slaves or runaway slaves were terms used in the 18th and 19th century to describe enslaved people who fled slavery. The term also refers to the federal Fugitive Slave Acts of 1793 and 1850. Such people are also called freedom seekers to avoid implying that the enslaved person had committed a crime and that the slaveholder was the injured party.
+
+Generally, they tried to reach states or territories where slavery was banned, including Canada, or, until 1821, Spanish Florida. Most slave law tried to control slave travel by requiring them to carry official passes if traveling without a master with them.
+
+Passage of the Fugitive Slave Act of 1850 increased penalties against enslaved people and those who aided them. Because of this, freedom seekers left the United States altogether, traveling to Canada or Mexico. Approximately 100,000 American slaves escaped to freedom
+
+
+
+<br>
+<br>
+
+Generally, they tried to reach states or territories where slavery was banned, including Canada, or, until 1821, Spanish Florida. Most slave law tried to control slave travel by requiring them to carry official passes if traveling without a master with them.
+
+Passage of the Fugitive Slave Act of 1850 increased penalties against enslaved people and those who aided them. Because of this, freedom seekers left the United States altogether, traveling to Canada or Mexico. Approximately 100,000 American slaves escaped to freedom
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/Fugitive_slaves_in_the_United_States
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
+
+
+    const DOUGLASS = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Stephen Douglass Philosophy
+    <a href="
+	https://www.britannica.com/biography/Stephen-A-Douglas
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    Stephen A. Douglas, in full Stephen Arnold Douglas, (born April 23, 1813, Brandon, Vermont, U.S.—died June 3, 1861, Chicago, Illinois), American politician, leader of the Democratic Party, and orator who espoused the cause of popular sovereignty in relation to the issue of slavery in the territories before the American Civil War (1861–65). He was reelected senator from Illinois in 1858 after a series of eloquent debates with the Republican candidate, Abraham Lincoln, who defeated him in the presidential race two years later.
+
+Douglas was elected in 1846 to the U.S. Senate, in which he served until his death; there he became deeply involved in the nation’s search for a solution to the slavery problem. As chairman of the Committee on Territories, he was particularly prominent in the bitter debates between North and South on the extension of slavery westward. Trying to remove the onus from Congress, he developed the theory of popular sovereignty (originally called squatter sovereignty), under which the people in a territory would themselves decide whether to permit slavery within their region’s boundaries. Douglas himself was not a slaveholder, though his wife was. He was influential in the passage of the Compromise of 1850 (which tried to maintain a congressional balance between free and slave states), and the organization of the Utah and New Mexico territories under popular sovereignty was a victory for his doctrine.
+
+
+<br>
+<br>
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.britannica.com/biography/Stephen-A-Douglas
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+
+
+
+
+
+
+
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; " class="mt-4"> <b style=" font-size: 2rem; " >
+
+    Popular Sovereignty
+
+    <a href="
+	    https://www.britannica.com/topic/popular-sovereignty
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    Stephen A. Douglas, in full Stephen Arnold Douglas, (born April 23, 1813, Brandon, Vermont, U.S.—died June 3, 1861, Chicago, Illinois), American politician, leader of the Democratic Party, and orator who espoused the cause of popular sovereignty in relation to the issue of slavery in the territories before the American Civil War (1861–65). He was reelected senator from Illinois in 1858 after a series of eloquent debates with the Republican candidate, Abraham Lincoln, who defeated him in the presidential race two years later.
+
+Douglas was elected in 1846 to the U.S. Senate, in which he served until his death; there he became deeply involved in the nation’s search for a solution to the slavery problem. As chairman of the Committee on Territories, he was particularly prominent in the bitter debates between North and South on the extension of slavery westward. Trying to remove the onus from Congress, he developed the theory of popular sovereignty (originally called squatter sovereignty), under which the people in a territory would themselves decide whether to permit slavery within their region’s boundaries. Douglas himself was not a slaveholder, though his wife was. He was influential in the passage of the Compromise of 1850 (which tried to maintain a congressional balance between free and slave states), and the organization of the Utah and New Mexico territories under popular sovereignty was a victory for his doctrine.
+
+
+<br>
+<br>
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+        https://www.britannica.com/topic/popular-sovereignty
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    `
 
     const CONFLICT_OVER_SLAVERY = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
@@ -443,18 +631,91 @@ The practice of slavery in the United States was one of the key political issues
     
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+`
+
+
+ const WELFARE = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    American Civil War
+    <a href="
+    https://en.wikipedia.org/wiki/American_Civil_War
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+The American Civil War (April 12, 1861 – May 9, 1865) (also known by other names) was a civil war in the United States fought between the Union (states that remained loyal to the federal union, or "the North") and the Confederacy (states that voted to secede, or "the South").[e] The central cause of the war was the status of slavery, especially the expansion of slavery into territories acquired as a result of the Louisiana Purchase and the Mexican–American War.[14] On the eve of the civil war in 1860, four million of the 32 million Americans (~13%) were enslaved black people, almost all in the South.[15]
+
+The practice of slavery in the United States was one of the key political issues of the 19th century. Decades of political unrest over slavery led up to the civil war. Disunion came after Abraham Lincoln won the 1860 United States presidential election on an anti-slavery expansion platform. An initial seven southern slave states declared their secession from the country to form the Confederacy. Confederate forces seized federal forts within territory they claimed. The last minute Crittenden Compromise tried to avert conflict but failed; both sides prepared for war. Fighting broke out in April 1861 when the Confederate army began the Battle of Fort Sumter in South Carolina, just over a month after the first inauguration of Abraham Lincoln. The Confederacy grew to control at least a majority of territory in eleven states (out of the 34 U.S. states in February 1861), and asserted claims to two more. The states that remained loyal to the federal government were known as the Union.[f] Both sides raised large volunteer and conscription armies. Four years of intense combat, mostly in the South, ensued.
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/American_Civil_War
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+ `
+
+    const EXPAN_INDU = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Civil War and Industrial Expansion
+    <a href="
+    https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/civil-war-and-industrial-expansion-1860-1897-overview
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+The period between the American Civil War (1861–65) and the end of the nineteenth century in the United States was marked by tremendous expansion of industry and agriculture as well as the spread of settlement across the continent. The population of the United States more than doubled during this period. In its report on the 1890 census the Bureau of the Census declared the frontier closed. Most of the economic growth was concentrated in the Northeast, Midwest, and plains states. The South remained largely agricultural, its total industrial production totaling about half that of New York State. The Northeast clearly emerged as the industrial core of the nation with 85 percent of the nation's manufacturing, processing raw materials from the Midwest and West.
+
+
+<br>
+<br>
+For several decades prior to the Civil War, the North was forced to delay or compromise several of its national economic policy objectives due to Southern opposition and the strong position the Southern states held in the Senate. As soon as the Southern states seceded Congress began enacting this delayed agenda. The Morrill Tariff of 1861 raised rates to 20 percent on average, ending more than 30 years of declining tariffs. Funding for three transcontinental railroads was enacted in the Transcontinental Railroad Act. The Morrill Land Grant Act (1862) established agricultural and mechanical colleges by allotting each state that remained in the Union 30,000 acres of land for each member of Congress. The Homestead Act (1862) provided 160 acres (a quarter section) in western territories free to anyone who settled on it for five years and declared their intention to become a citizen. Each of these policies profoundly shaped the development of the U.S. economy for the rest of the century.
+<br>
+
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/civil-war-and-industrial-expansion-1860-1897-overview
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
     `
+
 
     const nodes = [
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
-        { x: -126, z: -116, size:  20, label: "European Immigration", content: "todo" },
-        { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: "todo" },
-        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: "todo" },
+        { x: -126, z: -116, size:  20, label: "European Immigration", content: EUROPEAN_IMMIGRATION},
+        { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: INFLUX },
+        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: WELFARE},
 
         // top right reasons
-        { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: "todo" },
-        { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: "todo" },
+        { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: DOUGLASS },
+        { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: EXPAN_INDU },
 
         // bottom left
         { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: COMPROMISE_1850 },
@@ -543,8 +804,8 @@ The practice of slavery in the United States was one of the key political issues
         scene.add(label);
 
         // label light
-        const light = new THREE.PointLight(0xffffff, 1, n.size || 30);
-        light.position.set(n.x, n.y + 3 || 10, n.z);
+        const light = new THREE.PointLight(0xA2F0FF, 1, n.size+20 || 30);
+        light.position.set(n.x, n.y || 7, n.z);
         scene.add(light);
 
         return { mesh: label, content: n.content };
