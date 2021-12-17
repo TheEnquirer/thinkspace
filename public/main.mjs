@@ -158,7 +158,7 @@ let worldPromise = (async () => {
 })();
 
 const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
-window.localStorage.setItem('username', USER);
+//window.localStorage.setItem('username', USER);
 
 console.log("awaiting world...")
 const world = await worldPromise;
