@@ -7,8 +7,7 @@ import { Sky } from 'https://cdn.skypack.dev/three/examples/jsm/objects/Sky.js'
 
 import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/DRACOLoader.js';
-//import { FontLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/FontLoader.js';
-//import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometries/TextGeometry.js';
+
 import { SpriteText2D, textAlign } from 'https://cdn.skypack.dev/three-text2d';
 
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
@@ -28,6 +27,7 @@ const MODAL_DISTANCE = 20;
 const MOVE_SPEED = 0.5;
 const VERTICAL_MOVE_SPEED = 0.5
 
+// TODO: faster loader
 //const newloader = new DRACOLoader();
 //newloader.setDecoderPath('/examples/js/libs/draco/');
 //newloader.preload();
@@ -65,13 +65,6 @@ const controls = (() => {
     controls.enabled = false;
     return controls;
 })();
-
-//const droid_sans_boldPromise = (async () => {
-//    const loader = new FontLoader();
-//    return new Promise((res, rej) => {
-//        loader.load( 'https://cdn.skypack.dev/three/examples/fonts/droid/droid_sans_bold.typeface.json', res, undefined, rej);
-//    });
-//})();
 
 function initSky() {
 
@@ -171,8 +164,9 @@ let worldPromise = (async () => {
 const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
 window.localStorage.setItem('username', USER);
 
+console.log("awaiting world...")
 const world = await worldPromise;
-//const droid_sans_bold = await droid_sans_boldPromise;
+console.log("world loaded")
 ///////////////////////////////////////
 //                                   //
 //             COMMENTS              //
@@ -432,14 +426,14 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         const res_h = canvas.width * ratio;
         canvas.width = res_w;
         canvas.height = res_h;
-
         var ctx = canvas.getContext('2d');
-        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0); // scale high-res canvas https://stackoverflow.com/a/15666143/10372825
 
         // draw text
         ctx.font = `bold ${fontsize}px Helvetica`;
         ctx.fillStyle = "#c4daff";
         ctx.strokeStyle = ctx.fillStyle;
+        // draw wrapped lines and bounding box
         (() => {
             function getLines(ctx, text, maxWidth) {
                 var words = text.split(" ");
@@ -464,13 +458,10 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
                 ctx.fillText(line, 150 - line_width.width/2, 150 - fontsize * lines_below);
             }
             const lines = getLines(ctx, text, res_w / ratio - 20);
-            console.log('got lines', lines);
             for (let i=lines.length; i>0; i--) {
                 drawCentered(lines[i-1], lines.length-i);
             }
-            console.log(lines.map(l => ctx.measureText(l).width));
             const max_line_width = lines.map(l => ctx.measureText(l).width).reduce((a, c) => Math.max(a, c), -Infinity);
-            console.log('max line width', max_line_width);
             ctx.strokeRect(150 - max_line_width/2 - 10, 150-fontsize*lines.length - 2, max_line_width + 20, fontsize*lines.length + 12)
         })();
 
@@ -481,10 +472,10 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         spriteMaterial.depthTest = false;
         var sprite = new THREE.Sprite( spriteMaterial );
         sprite.scale.set(fontsize, fontsize, fontsize);
-        console.log('finished creating text')
         return sprite;  
     }
 
+    console.log('creating textual labels...')
     const geofenced = nodes.map(n => {
         // label text
         const label = makeTextSprite(n.label);
@@ -610,13 +601,8 @@ class GeofencedModalManager {
     }
     updateTarget(obj) {
         if (obj === this.target) return;
-         //TODO: cant get glowing working
-        //if (this.target !== null) {
-        //    this.target.mesh.material.color.setHex(0xcccccc);
-        //}
         if (active_comment !== null) return;    // get overriden by active comment
         this.target = obj;
-        //if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
         this.updateContent();
     }
     updateContent(content = null) {
@@ -625,7 +611,6 @@ class GeofencedModalManager {
             modal_manager.clear();
         } else {
             if (content !== null) this.target.content = content;
-            //modal_manager.setHTML(marked.parse(this.target.content));
             modal_manager.setHTML(this.target.content);
         }
     }
@@ -650,12 +635,6 @@ function animate(timestamp) {
         c.mesh.rotation.y += 0.0025
     }
 
-    // spin all modal cubes
-    //for (let n of geofenced) {
-    //    n.mesh.rotation.y += 0.005;
-    //}
-
-    // highlight nearest modal object
     // TODO: is there a better way of finding the nearest object?
     (() => {
         let min_dist = null;
@@ -670,8 +649,6 @@ function animate(timestamp) {
         }
         if (active_comment === null) {
             if (nearest !== null && min_dist <= MODAL_DISTANCE) {
-                nearest.mesh.rotation.y += 0.01
-                //nearest.mesh.position.y += Math.sin(timestamp/500)/100;
                 geofence_manager.updateTarget(nearest);
             } else {
                 geofence_manager.updateTarget(null);
