@@ -842,6 +842,47 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
 
 
 
+    const COTTON_KING = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Cotton is King
+    <a href="
+    https://www.pbs.org/wnet/african-americans-many-rivers-to-cross/history/why-was-cotton-king/#:~:text=The%20most%20commonly%20used%20phrase,it%20is%20important%20to%20understand
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+The most commonly used phrase describing the growth of the American economy in the 1830s and 1840s was “Cotton Is King.” We think of this slogan today as describing the plantation economy of the slavery states in the Deep South, which led to the creation of “the second Middle Passage.” But it is important to understand that this was not simply a Southern phenomenon. Cotton was one of the world’s first luxury commodities, after sugar and tobacco, and was also the commodity whose production most dramatically turned millions of black human beings in the United States themselves into commodities. Cotton became the first mass consumer commodity.
+
+
+<br>
+<br>
+Understanding both how extraordinarily profitable cotton was and how interconnected and overlapping were the economies of the cotton plantation, the Northern banking industry, New England textile factories and a huge proportion of the economy of Great Britain helps us to understand why it was something of a miracle that slavery was finally abolished in this country at all.
+
+
+
+<br>
+
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.pbs.org/wnet/african-americans-many-rivers-to-cross/history/why-was-cotton-king/#:~:text=The%20most%20commonly%20used%20phrase,it%20is%20important%20to%20understand
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
 
 
 
@@ -868,7 +909,7 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
         { x: - 81, z:   11, size:  45, label: "North Harbors Escapees", content: NORTH_HARBORS },
 
         // bottom center
-        { x: - 31, z:   72, size:  35, label: "Cotton is King", content: "todo" },
+        { x: - 31, z:   72, size:  35, label: "Cotton is King", content: COTTON_KING },
         { x: - 25, z:   24, size:  20, label: "Strong Economic Incentives", content: "todo" },
 
         // central three themes
