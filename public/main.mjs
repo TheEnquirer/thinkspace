@@ -1085,8 +1085,6 @@ var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
     event.preventDefault();
 
-    console.log(camera.position, camera.rotation);
-
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
 
