@@ -9,6 +9,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/G
 import { DRACOLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/DRACOLoader.js';
 //import { FontLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/FontLoader.js';
 //import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometries/TextGeometry.js';
+import { SpriteText2D, textAlign } from 'https://cdn.skypack.dev/three-text2d';
 
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 
@@ -316,17 +317,62 @@ const geofenced = (() => {
         { x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
 
-    //const font_geometry = new TextGeometry( 'Hello three.js!', {
-	//    font: droid_sans_bold,
-	//    size: 0.2,
-	//    height: 0.01,
-	//    curveSegments: 12,
-	//} );
-    //const font_mesh = new THREE.Mesh(font_geometry, new THREE.MeshStandardMaterial({ color: 0x3333dd }));
-    //scene.add( font_mesh )
+    //function makeTextSprite( message, parameters )
+    //{
+    //    if ( parameters === undefined ) parameters = {};
+    //    var fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
+    //    var fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
+    //    var borderThickness = parameters.hasOwnProperty("borderThickness") ? parameters["borderThickness"] : 4;
+    //    var borderColor = parameters.hasOwnProperty("borderColor") ?parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
+    //    var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
+    //    var textColor = parameters.hasOwnProperty("textColor") ?parameters["textColor"] : { r:0, g:0, b:0, a:1.0 };
+    //
+    //    var canvas = document.createElement('canvas');
+    //    var context = canvas.getContext('2d');
+    //    context.font = "Bold " + fontsize + "px " + fontface;
+    //    var metrics = context.measureText( message );
+    //    var textWidth = metrics.width;
+    //
+    //    context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
+    //    context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+    //
+    //    context.fillStyle = "rgba("+textColor.r+", "+textColor.g+", "+textColor.b+", 1.0)";
+    //    context.fillText( message, borderThickness, fontsize + borderThickness);
+    //
+    //    var texture = new THREE.Texture(canvas) 
+    //    texture.needsUpdate = true;
+    //
+    //    var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
+    //    var sprite = new THREE.Sprite( spriteMaterial );
+    //    sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
+    //    return sprite;  
+    //}
 
-    let text = new SpriteText('ayyyooooooooooooooo', 10);
-    scene.add(text);
+    function makeTextSprite(text) {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+
+        const fontsize = 12;
+
+        ctx.font = `${fontsize}px monospace`;
+        ctx.fillText('hello world', 0, 96);
+        ctx.fillStyle = 'rgba(32, 32, 200, 0.3)';
+        ctx.fillRect(0, 0, 500, 100);
+
+        var texture = new THREE.Texture(canvas) 
+        texture.needsUpdate = true;
+        var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
+        var sprite = new THREE.Sprite( spriteMaterial );
+        //sprite.scale.set(0.05 * fontsize, 0.025 * fontsize, 0.075 * fontsize);
+        return sprite;  
+    }
+
+    const sprite = makeTextSprite('ayo');
+    sprite.position.x = 0;
+    sprite.position.y = 10;
+    sprite.position.z = 0;
+    console.log(sprite);
+    scene.add(sprite);
 
     let geofenced = nodes.map(n => ({
         mesh: new THREE.Mesh(
