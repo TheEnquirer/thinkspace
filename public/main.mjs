@@ -428,7 +428,7 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
 
     function makeTextSprite(text) {
         var canvas = document.createElement('canvas');
-        const ratio = 30;
+        const ratio = 10;
         const res_w = canvas.width * ratio;
         const res_h = canvas.width * ratio;
         canvas.width = res_w;
@@ -439,21 +439,28 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
         const fontsize = 30;
 
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-        ctx.font = `${fontsize}px monospace`;
-        ctx.fillText('hello world', 0, fontsize + 1);
+        ctx.fillStyle = "#326ccc55";
+        ctx.fillRect(0, 0, 10000, 10000);
+
+        ctx.font = `bold ${fontsize}px Helvetica`;
+        ctx.fillStyle = "#000000";
+        const text_width = ctx.measureText(text);
+        console.log(text_width);
+        ctx.fillText(text, 150 - text_width.width/2, 150);
 
         var texture = new THREE.Texture(canvas) 
         texture.needsUpdate = true;
         var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
+        spriteMaterial.depthTest = false;
         var sprite = new THREE.Sprite( spriteMaterial );
         sprite.scale.set(fontsize, fontsize, fontsize);
         return sprite;  
     }
 
-    const sprite = makeTextSprite('ayo');
-    sprite.position.x = 0;
-    sprite.position.y = 10;
-    sprite.position.z = 0;
+    const sprite = makeTextSprite('ayoO what if we have a lot of words in a description');
+    sprite.position.x = -40;
+    sprite.position.y = 7;
+    sprite.position.z = -40;
     console.log(sprite);
     scene.add(sprite);
 
@@ -469,7 +476,7 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
     for (let n of geofenced) {
         n.mesh.position.x = n.data.x;
         n.mesh.position.z = n.data.y;
-	n.mesh.position.y = (n.data.z? n.data.z : 1);
+        n.mesh.position.y = n.data.z || 7;
         scene.add( n.mesh );
     };
 
@@ -542,6 +549,7 @@ document.getElementsByTagName('canvas')[0].addEventListener('click', onDocumentM
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
+    console.log(camera.position)
     event.preventDefault();
 
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
