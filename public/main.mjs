@@ -24,7 +24,8 @@ const clock = new THREE.Clock();
 
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
-const MOVE_SPEED = 0.2;
+const MOVE_SPEED = 0.5;
+const VERTICAL_MOVE_SPEED = 0.5
 
 //const newloader = new DRACOLoader();
 //newloader.setDecoderPath('/examples/js/libs/draco/');
@@ -56,12 +57,12 @@ const renderer = (() => {
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.5;
+    renderer.toneMappingExposure = 0.4776;
     return renderer;
 })();
 const controls = (() => {
     const controls = new FirstPersonControls( camera, renderer.domElement );
-    controls.movementSpeed = 10;
+    controls.movementSpeed = 20;
     controls.lookSpeed = 0.2;
     controls.enabled = false;
     return controls;
@@ -85,13 +86,20 @@ function initSky() {
 
     // GUI
     const effectController = {
-        turbidity: 10,
-        rayleigh: 3,
-        mieCoefficient: 0.005,
-        mieDirectionalG: 0.7,
-        elevation: 2,
+        //turbidity: 10,
+        //rayleigh: 3,
+        //mieCoefficient: 0.005,
+        //mieDirectionalG: 0.7,
+        //elevation: 2,
+        //azimuth: 180,
+        exposure: renderer.toneMappingExposure,
+        turbidity: 10.3,
+        rayleigh: 3.533,
+        mieCoefficient: 0.006,
+        mieDirectionalG: 0.416,
+        elevation: 0.1,
         azimuth: 180,
-        exposure: renderer.toneMappingExposure
+
     };
 
     function guiChanged() {
@@ -116,18 +124,22 @@ function initSky() {
 
 
     guiChanged();
+    //scene.add(GUI)
 
     // init fog particles
     const material = (() => {
-        scene.fog = new THREE.FogExp2( '#9babbb', 0.003 );
+	//let fogg = new THREE.FogExp2( '#bbb09b', 0.113 );
+	scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
+	//scene.fog = new THREE.FogExp2( '#b78a5f', 0.013 );
+	//scene.fog = new THREE.FogExp2( '#bc946f', 0.013 );
         const geometry = new THREE.BufferGeometry();
         const vertices = [];
 
-        for ( let i = 0; i < 10000; i ++ ) {
+        for ( let i = 0; i < 15000; i ++ ) {
 
-            const x = 3000 * Math.random() - 1000;
-            const y = 3000 * Math.random() - 1000;
-            const z = 3000 * Math.random() - 1000;
+            const x = 3500 * Math.random() - 2000;
+            const y = 3500 * Math.random() - 2000;
+            const z = 3500 * Math.random() - 2000;
 
             vertices.push( x, y, z );
 
@@ -311,7 +323,7 @@ class CommentThread {
 
 const geofenced = (() => {
     const nodes = [
-        { x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	{ x: 1, y: 1, z: 12, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
         { x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
         { x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
@@ -337,7 +349,7 @@ const geofenced = (() => {
     for (let n of geofenced) {
         n.mesh.position.x = n.data.x;
         n.mesh.position.z = n.data.y;
-        n.mesh.position.y = 1;
+	n.mesh.position.y = (n.data.z? n.data.z : 1);
         scene.add( n.mesh );
     };
 
@@ -453,7 +465,7 @@ class GeofencedModalManager {
         // TODO: cant get glowing working
         if (this.target !== null) {
             this.target.mesh.material.color.setHex(0xcccccc);
-            this.target.mesh.position.y = 1;
+	    //this.target.mesh.position.y = 1;
         }
         if (active_comment !== null) return;    // get overriden by active comment
         this.target = obj;
@@ -477,8 +489,8 @@ function animate(timestamp) {
     requestAnimationFrame( animate );
     renderer.setSize( window.innerWidth, window.innerHeight );
 
-    if (up) { camera.position.y += 0.1; }
-    if (down) { camera.position.y -= 0.1; }
+    if (up) { camera.position.y += VERTICAL_MOVE_SPEED; }
+    if (down) { camera.position.y -= VERTICAL_MOVE_SPEED; }
     if (manual_move) {
         if (moving[0]) { camera.translateZ( -MOVE_SPEED ) }
         if (moving[1]) { camera.translateX( -MOVE_SPEED ) }
