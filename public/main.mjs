@@ -375,6 +375,39 @@ The Tammany Society emerged as the center for Democratic-Republican Party politi
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
+
+    const STATE_VS_FEDERAL_RIGHTS = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    State vs Federal Rights
+    <a href="
+    https://www.battlefields.org/learn/articles/states-rights
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    The appeal to states' rights is of the most potent symbols of the American Civil War, but confusion abounds as to the historical and present meaning of this federalist principle. 
+
+The concept of states' rights had been an old idea by 1860. The original thirteen colonies in America in the 1700s, separated from the mother country in Europe by a vast ocean, were use to making many of their own decisions and ignoring quite a few of the rules imposed on them from abroad. During the American Revolution, the founding fathers were forced to compromise with the states to ensure ratification of the Constitution and the establishment of a united country. In fact, the original Constitution banned slavery, but Virginia would not accept it; and Massachusetts would not ratify the document without a Bill of Rights.
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.battlefields.org/learn/articles/states-rights
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
     const COMPROMISE_1850 = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
@@ -451,8 +484,6 @@ With the onset of hard economic times in the 1870s, European immigrants and Amer
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
 
-
-
     const INFLUX = `
 
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
@@ -498,10 +529,6 @@ Passage of the Fugitive Slave Act of 1850 increased penalties against enslaved p
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
-
-
-
-
 
     const DOUGLASS = `
 
@@ -711,7 +738,7 @@ For several decades prior to the Civil War, the North was forced to delay or com
 
         // central three themes
         { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: "todo" },
-        { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: "todo" },
+        { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: STATE_VS_FEDERAL_RIGHTS },
         { x: - 30, z: - 15, size:  80, label: "Conflict over Slavery", content: CONFLICT_OVER_SLAVERY },
 
         { x:   54, z: - 77, size: 120, label: "The Civil War", y: 17, content: THE_CIVIL_WAR },
