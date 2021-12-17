@@ -323,75 +323,41 @@ class CommentThread {
 }
 
 const geofenced = (() => {
-    let s = ` 
-    <div style="
-	//border: 1px solid red;
-	font-size: 1.5rem;
-	background: #fafafa;
-	color: #141414;
-	font-family: helvetica;
-	padding: 34px;
-	border-radius: 8px;
-	line-height: 2;
-	//width: 100%;
-	//border: 1px solid red;
+    const IRISH_FAMINE = ` 
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
+    Great Famine (Ireland)
 
-    "> 
-    <b
-	style="
-	    font-size: 2rem;
-	"
-    >Great Famine (Ireland)</b> <br>
-    <hr style="height: 2px; background-color: #959595; 
-    margin-top: 10px;
-    margin-bottom: 30px;
-    ">
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
     The Great Famine, also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland), was a period of mass starvation and disease in Ireland from 1845 to 1852. With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol, loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47". During the Great Hunger, about 1 million people died and more than a million fled the country, causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851. Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.
 A potato infected with late blight, showing typical rot symptoms
+
 <br>
 <br>
 
-The proximate cause of the famine was a potato blight[13] which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848.[14] From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism.[15][16] Longer-term causes include the system of absentee landlordism[17][18] and single-crop dependence.
+The proximate cause of the famine was a potato blight which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848. From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism. Longer-term causes include the system of absentee landlordism and single-crop dependence.
+
 
 <br>
-    <hr style="height: 2px; background-color: #959595; 
-    margin-top: 30px;
-    margin-bottom: 30px;
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
     ">
-    <a href="https://en.wikipedia.org/wiki/Great_Famine_(Ireland)" target="_blank"
-    style="
-    color: #424242;
-    font-size: 1.8rem;
-    //font-family: Monaco;
-    text-align: center;
-      margin: auto;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    //width: 40%;
-    //width: 100%;
-    //border: 1px solid red;
-    font-weight: 700;
-    //background: red;
-
-    "
-    >
+    <a href="
+    https://en.wikipedia.org/wiki/Great_Famine_(Ireland)
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
     
-    <div
-	class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md"
-    >
-    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading
-    </div>
-    </a>
-</div>
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
     //s = "11"
 
     const nodes = [
 	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-	{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: s },
-	{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	{ x: 0, y: 0, z: -0.5, size: 1, label: "the world turned upside down", content: IRISH_FAMINE },
+	//{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
 	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
 
