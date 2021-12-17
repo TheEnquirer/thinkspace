@@ -194,8 +194,7 @@ supabaseClient
     .from('comments')
     .on('UPDATE', payload => {
         if (active_comment?.dbid === payload.new.id) {
-            allComments[active_comment.dbid] = new CommentThread(payload);
-            active_comment = allComments[active_comment.dbid];
+            active_comment.toplevel = new Comment(payload.new, active_comment);
             active_comment.beANarcissist();
         }
     }).subscribe();
