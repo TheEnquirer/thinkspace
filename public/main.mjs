@@ -48,9 +48,6 @@ const camera = (() => {
 (() => {
     const ambient_light = new THREE.AmbientLight(0x404040, 1.5);
     scene.add(ambient_light);
-    const point_light = new THREE.PointLight(0xffffff, 1, 100);
-    point_light.position.set(0, 12, 0);
-    scene.add(point_light);
 })();
 const renderer = (() => {
     const renderer = new THREE.WebGLRenderer({antialias: true}); // init renderer
@@ -130,7 +127,7 @@ function initSky() {
     // init fog particles
     const material = (() => {
 	//let fogg = new THREE.FogExp2( '#bbb09b', 0.113 );
-	scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
+	//scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
 	//scene.fog = new THREE.FogExp2( '#b78a5f', 0.013 );
 	//scene.fog = new THREE.FogExp2( '#bc946f', 0.013 );
         const geometry = new THREE.BufferGeometry();
@@ -338,42 +335,31 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
     //s = "11"
 
     const nodes = [
-	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-	{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: s },
-	{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
-    ]
+        // top left reasons
+        { x: -200, z: -114, size:  30, label: "European Food Shortages", content: "todo" },
+        { x: -126, z: -116, size:  20, label: "European Immigration", content: "todo" },
+        { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: "todo" },
+        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: "todo" },
 
-    //function makeTextSprite( message, parameters )
-    //{
-    //    if ( parameters === undefined ) parameters = {};
-    //    var fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
-    //    var fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
-    //    var borderThickness = parameters.hasOwnProperty("borderThickness") ? parameters["borderThickness"] : 4;
-    //    var borderColor = parameters.hasOwnProperty("borderColor") ?parameters["borderColor"] : { r:0, g:0, b:0, a:1.0 };
-    //    var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?parameters["backgroundColor"] : { r:255, g:255, b:255, a:1.0 };
-    //    var textColor = parameters.hasOwnProperty("textColor") ?parameters["textColor"] : { r:0, g:0, b:0, a:1.0 };
-    //
-    //    var canvas = document.createElement('canvas');
-    //    var context = canvas.getContext('2d');
-    //    context.font = "Bold " + fontsize + "px " + fontface;
-    //    var metrics = context.measureText( message );
-    //    var textWidth = metrics.width;
-    //
-    //    context.fillStyle   = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
-    //    context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
-    //
-    //    context.fillStyle = "rgba("+textColor.r+", "+textColor.g+", "+textColor.b+", 1.0)";
-    //    context.fillText( message, borderThickness, fontsize + borderThickness);
-    //
-    //    var texture = new THREE.Texture(canvas) 
-    //    texture.needsUpdate = true;
-    //
-    //    var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
-    //    var sprite = new THREE.Sprite( spriteMaterial );
-    //    sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
-    //    return sprite;  
-    //}
+        // top right reasons
+        { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: "todo" },
+        { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: "todo" },
+
+        // bottom left
+        { x: -175, z: - 15, size:  20, label: "Compromise of 1850", content: "todo" },
+        { x: -134, z:  112, size:  20, label: "Free Labor Ideology", content: "todo" },
+        { x: - 30, z: - 15, size:  20, label: "Anti-slavery Sentiment", content: "todo" },
+
+        // bottom center
+        { x: - 30, z: - 25, size:  69, label: "Cotton is King", content: "todo" },
+        { x: - 23, z: - 25, size:  20, label: "Strong Economic Incentives", content: "todo" },
+
+        // central three themes
+        { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: "todo" },
+        { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: "todo" },
+
+        { x:   54, z: - 77, size: 120, label: "The Civil War", y: 17, content: "todo" },
+    ]
 
     function makeTextSprite(text) {
         var canvas = document.createElement('canvas');
@@ -384,18 +370,18 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
         canvas.height = res_h;
         var ctx = canvas.getContext('2d');
 
-
-        const fontsize = 30;
+        const fontsize = 22;
 
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-        ctx.fillStyle = "#326ccc55";
-        ctx.fillRect(0, 0, 10000, 10000);
 
         ctx.font = `bold ${fontsize}px Helvetica`;
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = "#c4daff";
+
+        ctx.strokeStyle = ctx.fillStyle;
         const text_width = ctx.measureText(text);
-        console.log(text_width);
         ctx.fillText(text, 150 - text_width.width/2, 150);
+
+        ctx.strokeRect(150 - text_width.width/2 - 10, 150-fontsize, text_width.width + 20, fontsize + 10)
 
         var texture = new THREE.Texture(canvas) 
         texture.needsUpdate = true;
@@ -406,28 +392,19 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
         return sprite;  
     }
 
-    const sprite = makeTextSprite('ayoO what if we have a lot of words in a description');
-    sprite.position.x = -40;
-    sprite.position.y = 7;
-    sprite.position.z = -40;
-    console.log(sprite);
-    scene.add(sprite);
+    const geofenced = nodes.map(n => {
+        const label = makeTextSprite(n.label);
+        label.position.x = n.x;
+        label.position.z = n.z;
+        label.position.y = n.y || 7;
+        scene.add(label);
 
-    let geofenced = nodes.map(n => ({
-        mesh: new THREE.Mesh(
-            new THREE.BoxBufferGeometry(n.size, n.size, n.size),
-            new THREE.MeshStandardMaterial({ color: 0xcccccc }),
-        ),
-        content: n.content,
-        data: n
-    }));
+        const light = new THREE.PointLight(0xffffff, 1, n.size || 30);
+        light.position.set(n.x, n.y + 3 || 10, n.z);
+        scene.add(light);
 
-    for (let n of geofenced) {
-        n.mesh.position.x = n.data.x;
-        n.mesh.position.z = n.data.y;
-        n.mesh.position.y = n.data.z || 7;
-        scene.add( n.mesh );
-    };
+        return { mesh: label};
+    });
 
     return geofenced;
 })();
@@ -539,14 +516,13 @@ class GeofencedModalManager {
     }
     updateTarget(obj) {
         if (obj === this.target) return;
-        // TODO: cant get glowing working
-        if (this.target !== null) {
-            this.target.mesh.material.color.setHex(0xcccccc);
-	    //this.target.mesh.position.y = 1;
-        }
+         //TODO: cant get glowing working
+        //if (this.target !== null) {
+        //    this.target.mesh.material.color.setHex(0xcccccc);
+        //}
         if (active_comment !== null) return;    // get overriden by active comment
         this.target = obj;
-        if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
+        //if (this.target !== null) this.target.mesh.material.color.setHex(0x3333dd);
         this.updateContent();
     }
     updateContent(content = null) {
@@ -581,9 +557,9 @@ function animate(timestamp) {
     }
 
     // spin all modal cubes
-    for (let n of geofenced) {
-        n.mesh.rotation.y += 0.005;
-    }
+    //for (let n of geofenced) {
+    //    n.mesh.rotation.y += 0.005;
+    //}
 
     // highlight nearest modal object
     // TODO: is there a better way of finding the nearest object?
@@ -601,7 +577,7 @@ function animate(timestamp) {
         if (active_comment === null) {
             if (nearest !== null && min_dist <= MODAL_DISTANCE) {
                 nearest.mesh.rotation.y += 0.01
-                nearest.mesh.position.y += Math.sin(timestamp/500)/100;
+                //nearest.mesh.position.y += Math.sin(timestamp/500)/100;
                 geofence_manager.updateTarget(nearest);
             } else {
                 geofence_manager.updateTarget(null);
