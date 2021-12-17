@@ -359,11 +359,50 @@ The proximate cause of the famine was a potato blight which infected potato crop
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
+
+    const COMPROMISE_1850 = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Compromise of 1850
+    <a href="
+	https://en.wikipedia.org/wiki/Compromise_of_1850?scrlybrkr=b9099579
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    The Compromise of 1850 was a package of five separate bills passed by the United States Congress in September 1850 that defused a political confrontation between slave and free states on the status of territories acquired in the Mexican–American War. It also set Texas's western and northern borders and included provisions addressing fugitive slaves and the slave trade. The compromise was brokered by Whig senator Henry Clay and Democratic senator Stephen A. Douglas, with the support of President Millard Fillmore.
+
+<br>
+<br>
+
+A debate over slavery in the territories had erupted during the Mexican–American War, as many Southerners sought to expand slavery to the newly-acquired lands and many Northerners opposed any such expansion. The debate was further complicated by Texas's claim to all former Mexican territory north and east of the Rio Grande, including areas it had never effectively controlled. These issues prevented the passage of organic acts to create organized territorial governments for the land acquired in the Mexican–American War. In early 1850, Clay proposed a package of eight bills that would settle most of the pressing issues before Congress. Clay's proposal was opposed by President Zachary Taylor, anti-slavery Whigs like William Seward, and pro-slavery Democrats like John C. Calhoun, and congressional debate over the territories continued. The debates over the bill were the most famous in Congressional history, and the divisions devolved into fistfights and drawn guns on the floor of Congress.
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/Compromise_of_1850?scrlybrkr=b9099579
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
     //s = "11"
 
     const nodes = [
 	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-	{ x: 0, y: 0, z: -0.5, size: 1, label: "the world turned upside down", content: IRISH_FAMINE },
+	{ x: 0, y: 0, z: -0.5, size: 1, label: "the world turned upside down", content: COMPROMISE_1850 },
 	//{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
 	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
