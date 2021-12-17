@@ -193,8 +193,11 @@ supabaseClient
 supabaseClient
     .from('comments')
     .on('UPDATE', payload => {
-        if (active_comment?.dbid === payload.new.id)
+        if (active_comment?.dbid === payload.new.id) {
+            allComments[active_comment.dbid] = new CommentThread(payload);
+            active_comment = allComments[active_comment.dbid];
             active_comment.beANarcissist();
+        }
     }).subscribe();
 
 supabaseClient
@@ -276,11 +279,9 @@ class CommentThread {
         this.toplevel = new Comment(wtfisav.new, this);
 
         clickables.push(this);
-        console.log('new comment thread created')
     }
     handleClick(_) {
         if (active_comment !== null) return;    // only start displaying a comment if nothing is currently active
-        console.log('currently', active_comment)
         active_comment = this;
         geofence_manager.updateTarget(null);
         this.beANarcissist();
@@ -338,7 +339,6 @@ const geofenced = (() => {
 
     return geofenced;
 })();
-//console.log(geofenced);
 
 // events
 window.addEventListener('keydown', onDocumentKeyDown, false);
@@ -484,7 +484,6 @@ function animate(timestamp) {
 
     for (const c of Object.values(allComments)) {
         c.mesh.rotation.y += 0.0025
-        //console.log(i)
     }
 
     // spin all modal cubes
