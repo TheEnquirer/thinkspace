@@ -18,8 +18,6 @@ import { addCommentToDb, supabaseClient, Testing } from './database_manager.js';
 
 import 'https://cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js';
 
-//import { Interaction } from 'https://cdn.skypack.dev/pin/three.interaction@v0.2.3-OWhEAGFgFHqRauqtJEO2/mode=imports/optimized/three.interaction.js';
-
 const loader = new GLTFLoader();
 const scene = new THREE.Scene(); // init scene
 const clock = new THREE.Clock();
@@ -27,8 +25,6 @@ const clock = new THREE.Clock();
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
 const MOVE_SPEED = 0.2;
-const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
-window.localStorage.setItem('username', USER);
 
 //const newloader = new DRACOLoader();
 //newloader.setDecoderPath('/examples/js/libs/draco/');
@@ -71,7 +67,7 @@ const controls = (() => {
     return controls;
 })();
 
-const droid_sans_bold = await (async () => {
+const droid_sans_boldPromise = (async () => {
     const loader = new FontLoader();
     return new Promise((res, rej) => {
         loader.load( 'https://cdn.skypack.dev/three/examples/fonts/droid/droid_sans_bold.typeface.json', res, undefined, rej);
@@ -87,8 +83,7 @@ function initSky() {
 
     let sun = new THREE.Vector3();
 
-    /// GUI
-
+    // GUI
     const effectController = {
         turbidity: 10,
         rayleigh: 3,
@@ -151,7 +146,7 @@ function initSky() {
     return [ sky, sun, material ];
 }
 initSky();
-const world = await (async () => {
+let worldPromise = (async () => {
     const world = await new Promise((res, rej) => {
         loader.load('models/FINAL1.glb', res, undefined, rej);
     });
@@ -163,6 +158,11 @@ const world = await (async () => {
     return world;
 })();
 
+const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
+window.localStorage.setItem('username', USER);
+
+const world = await worldPromise;
+const droid_sans_bold = await droid_sans_boldPromise;
 ///////////////////////////////////////
 //                                   //
 //             COMMENTS              //
@@ -184,7 +184,7 @@ const getPositionInfrontOfCamera = (camera) => {
 }
 
 const initializeComment = () => {
-    let message = promptForComment(); // TODO: change
+    let message = promptForComment();
     if (message === null) return;
     addCommentToDb(USER, message, getPositionInfrontOfCamera(camera), []);
 }
@@ -192,32 +192,27 @@ const initializeComment = () => {
 supabaseClient
     .from('comments')
     .on('INSERT', payload => {
-        allComments[payload.id] = new CommentThread(payload); // TODO: test
+        allComments[payload.id] = new CommentThread(payload);
     }).subscribe();
 
 supabaseClient
     .from('comments')
     .on('UPDATE', payload => {
-        if (active_comment?.dbid === payload.new.id)
+        if (active_comment?.dbid === payload.new.id) {
+            allComments[active_comment.dbid] = new CommentThread(payload);
+            active_comment = allComments[active_comment.dbid];
             active_comment.beANarcissist();
+        }
     }).subscribe();
 
-const loadComments = async () => {
-    const { data, error } = await supabaseClient
-        .from('comments')
-        .select()
-    console.log(data);
-    return data
-}
-
-(async () => {
-    const comments = await loadComments()
-    console.log(comments)
-    for (const c of comments) { 
-        allComments[c.id] = new CommentThread({ new: c });
-    }
-})();
-
+supabaseClient
+    .from('comments')
+    .select()
+    .then(comments => {
+        comments.body.forEach(c => {
+            allComments[c.id] = new CommentThread({ new: c });
+        });
+    });
 
 // MESHES
 class Comment {
@@ -239,7 +234,6 @@ class Comment {
                 });
         }, 1, { once: true });
         // TODO: make sure event listeners are killed when events are killed, or we will memory leak to all hell
-        document.getaddEventListener
         return `
         <div class="pointer-events-auto select-auto border-red-400">
             <div class="rounded-md p-2" style="background-color: rgba(32, 32, 32, 0.2);">
@@ -263,7 +257,6 @@ class Comment {
         `;
     }
     serialize() {
-        console.log('serializing', this.session_id)
         return { user: this.user, text: this.text, children: this.children.map(c => c.serialize()) };
     }
     addReply(user, text) {
@@ -291,11 +284,9 @@ class CommentThread {
         this.toplevel = new Comment(wtfisav.new, this);
 
         clickables.push(this);
-        console.log('new comment thread created')
     }
     handleClick(_) {
         if (active_comment !== null) return;    // only start displaying a comment if nothing is currently active
-        console.log('currently', active_comment)
         active_comment = this;
         geofence_manager.updateTarget(null);
         this.beANarcissist();
@@ -353,7 +344,6 @@ const geofenced = (() => {
 
     return geofenced;
 })();
-//console.log(geofenced);
 
 // events
 window.addEventListener('keydown', onDocumentKeyDown, false);
@@ -499,17 +489,8 @@ function animate(timestamp) {
 
     for (const c of Object.values(allComments)) {
         c.mesh.rotation.y += 0.0025
-        //console.log(i)
     }
 
-    //if (fasterTurn) { controls.lookSpeed = 0.3 } else { controls.lookSpeed = 0.1 }
-    // event handling
-
-    //cube.rotation.x += 0.01;
-    //cube.mesh.rotation.y += 0.01;
-    //cube.mesh.rotation.x += 0.001;
-    //defaultCube.mesh.rotation.y -= 0.01;
-    
     // spin all modal cubes
     for (let n of geofenced) {
         n.mesh.rotation.y += 0.005;
