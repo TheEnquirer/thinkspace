@@ -599,14 +599,22 @@ The practice of slavery in the United States was one of the key political issues
     
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
-    `
+
+`
+
+
+ const WELFARE = `
+
+
+ `
+
 
     const nodes = [
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
         { x: -126, z: -116, size:  20, label: "European Immigration", content: EUROPEAN_IMMIGRATION},
         { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: INFLUX },
-        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: "todo" },
+        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: WELFARE},
 
         // top right reasons
         { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: DOUGLASS },
