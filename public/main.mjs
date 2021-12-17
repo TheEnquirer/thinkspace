@@ -379,16 +379,204 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
+    
+    const EUROPEAN_IMMIGRATION = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Immigration to the US
+
+    <a href="
+	https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/immigration-to-united-states-1851-1900/
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    In the late 1800s, people in many parts of the world decided to leave their homes and immigrate to the United States. Fleeing crop failure, land and job shortages, rising taxes, and famine, many came to the U. S. because it was perceived as the land of economic opportunity. Others came seeking personal freedom or relief from political and religious persecution, and nearly 12 million immigrants arrived in the United States between 1870 and 1900. During the 1870s and 1880s, the vast majority of these people were from Germany, Ireland, and England - the principal sources of immigration before the Civil War. Even so, a relatively large group of Chinese immigrated to the United States between the start of the California gold rush in 1849 and 1882, when federal law stopped their immigration.
+
+
+
+<br>
+<br>
+
+With the onset of hard economic times in the 1870s, European immigrants and Americans began to compete for the jobs traditionally reserved for the Chinese. With economic competition came dislike and even racial suspicion and hatred. Such feelings were accompanied by anti-Chinese riots and pressure, especially in California, for the exclusion of Chinese immigrants from the United States. The result of this pressure was the Chinese Exclusion Act, passed by Congress in 1882. This Act virtually ended Chinese immigration for nearly a century.
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/rise-of-industrial-america-1876-1900/immigration-to-united-states-1851-1900/
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
+    const INFLUX = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Escaped Slaves in the United States
+
+    <a href="
+	https://en.wikipedia.org/wiki/Fugitive_slaves_in_the_United_States
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    In the United States, fugitive slaves or runaway slaves were terms used in the 18th and 19th century to describe enslaved people who fled slavery. The term also refers to the federal Fugitive Slave Acts of 1793 and 1850. Such people are also called freedom seekers to avoid implying that the enslaved person had committed a crime and that the slaveholder was the injured party.
+
+Generally, they tried to reach states or territories where slavery was banned, including Canada, or, until 1821, Spanish Florida. Most slave law tried to control slave travel by requiring them to carry official passes if traveling without a master with them.
+
+Passage of the Fugitive Slave Act of 1850 increased penalties against enslaved people and those who aided them. Because of this, freedom seekers left the United States altogether, traveling to Canada or Mexico. Approximately 100,000 American slaves escaped to freedom
+
+
+
+<br>
+<br>
+
+Generally, they tried to reach states or territories where slavery was banned, including Canada, or, until 1821, Spanish Florida. Most slave law tried to control slave travel by requiring them to carry official passes if traveling without a master with them.
+
+Passage of the Fugitive Slave Act of 1850 increased penalties against enslaved people and those who aided them. Because of this, freedom seekers left the United States altogether, traveling to Canada or Mexico. Approximately 100,000 American slaves escaped to freedom
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/Fugitive_slaves_in_the_United_States
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
+
+
+    const DOUGLASS = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Stephen Douglass Philosophy
+    <a href="
+	https://www.britannica.com/biography/Stephen-A-Douglas
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    Stephen A. Douglas, in full Stephen Arnold Douglas, (born April 23, 1813, Brandon, Vermont, U.S.—died June 3, 1861, Chicago, Illinois), American politician, leader of the Democratic Party, and orator who espoused the cause of popular sovereignty in relation to the issue of slavery in the territories before the American Civil War (1861–65). He was reelected senator from Illinois in 1858 after a series of eloquent debates with the Republican candidate, Abraham Lincoln, who defeated him in the presidential race two years later.
+
+Douglas was elected in 1846 to the U.S. Senate, in which he served until his death; there he became deeply involved in the nation’s search for a solution to the slavery problem. As chairman of the Committee on Territories, he was particularly prominent in the bitter debates between North and South on the extension of slavery westward. Trying to remove the onus from Congress, he developed the theory of popular sovereignty (originally called squatter sovereignty), under which the people in a territory would themselves decide whether to permit slavery within their region’s boundaries. Douglas himself was not a slaveholder, though his wife was. He was influential in the passage of the Compromise of 1850 (which tried to maintain a congressional balance between free and slave states), and the organization of the Utah and New Mexico territories under popular sovereignty was a victory for his doctrine.
+
+
+<br>
+<br>
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.britannica.com/biography/Stephen-A-Douglas
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+
+
+
+
+
+
+
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; " class="mt-4"> <b style=" font-size: 2rem; " >
+
+    Popular Sovereignty
+
+    <a href="
+	    https://www.britannica.com/topic/popular-sovereignty
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    Stephen A. Douglas, in full Stephen Arnold Douglas, (born April 23, 1813, Brandon, Vermont, U.S.—died June 3, 1861, Chicago, Illinois), American politician, leader of the Democratic Party, and orator who espoused the cause of popular sovereignty in relation to the issue of slavery in the territories before the American Civil War (1861–65). He was reelected senator from Illinois in 1858 after a series of eloquent debates with the Republican candidate, Abraham Lincoln, who defeated him in the presidential race two years later.
+
+Douglas was elected in 1846 to the U.S. Senate, in which he served until his death; there he became deeply involved in the nation’s search for a solution to the slavery problem. As chairman of the Committee on Territories, he was particularly prominent in the bitter debates between North and South on the extension of slavery westward. Trying to remove the onus from Congress, he developed the theory of popular sovereignty (originally called squatter sovereignty), under which the people in a territory would themselves decide whether to permit slavery within their region’s boundaries. Douglas himself was not a slaveholder, though his wife was. He was influential in the passage of the Compromise of 1850 (which tried to maintain a congressional balance between free and slave states), and the organization of the Utah and New Mexico territories under popular sovereignty was a victory for his doctrine.
+
+
+<br>
+<br>
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+        https://www.britannica.com/topic/popular-sovereignty
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    `
 
     const nodes = [
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
-        { x: -126, z: -116, size:  20, label: "European Immigration", content: "todo" },
-        { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: "todo" },
+        { x: -126, z: -116, size:  20, label: "European Immigration", content: EUROPEAN_IMMIGRATION},
+        { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: INFLUX },
         { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: "todo" },
 
         // top right reasons
-        { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: "todo" },
+        { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: DOUGLASS },
         { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: "todo" },
 
         // bottom left
@@ -478,8 +666,8 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         scene.add(label);
 
         // label light
-        const light = new THREE.PointLight(0xffffff, 1, n.size || 30);
-        light.position.set(n.x, n.y + 3 || 10, n.z);
+        const light = new THREE.PointLight(0xA2F0FF, 1, n.size+20 || 30);
+        light.position.set(n.x, n.y || 7, n.z);
         scene.add(light);
 
         return { mesh: label, content: n.content };
