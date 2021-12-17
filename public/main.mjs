@@ -423,30 +423,31 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     ]
 
     function makeTextSprite(text) {
-        var canvas = document.createElement('canvas');
         const ratio = 10;
+        const fontsize = 22;
+
+        // prepare canvas
+        var canvas = document.createElement('canvas');
         const res_w = canvas.width * ratio;
         const res_h = canvas.width * ratio;
         canvas.width = res_w;
         canvas.height = res_h;
+
         var ctx = canvas.getContext('2d');
-
-        const fontsize = 22;
-
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
+        // draw text
         ctx.font = `bold ${fontsize}px Helvetica`;
         ctx.fillStyle = "#c4daff";
-
         ctx.strokeStyle = ctx.fillStyle;
         const text_width = ctx.measureText(text);
         ctx.fillText(text, 150 - text_width.width/2, 150);
-
         ctx.strokeRect(150 - text_width.width/2 - 10, 150-fontsize, text_width.width + 20, fontsize + 10)
 
+        // convert canvas to sprite
         var texture = new THREE.Texture(canvas) 
         texture.needsUpdate = true;
-        var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
+        var spriteMaterial = new THREE.SpriteMaterial( { map: texture } );
         spriteMaterial.depthTest = false;
         var sprite = new THREE.Sprite( spriteMaterial );
         sprite.scale.set(fontsize, fontsize, fontsize);
@@ -454,12 +455,14 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     }
 
     const geofenced = nodes.map(n => {
+        // label text
         const label = makeTextSprite(n.label);
         label.position.x = n.x;
         label.position.z = n.z;
         label.position.y = n.y || 7;
         scene.add(label);
 
+        // label light
         const light = new THREE.PointLight(0xffffff, 1, n.size || 30);
         light.position.set(n.x, n.y + 3 || 10, n.z);
         scene.add(light);
