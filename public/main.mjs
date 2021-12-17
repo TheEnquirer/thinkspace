@@ -362,20 +362,25 @@ const geofenced = (() => {
 
     function makeTextSprite(text) {
         var canvas = document.createElement('canvas');
+        const ratio = 30;
+        const res_w = canvas.width * ratio;
+        const res_h = canvas.width * ratio;
+        canvas.width = res_w;
+        canvas.height = res_h;
         var ctx = canvas.getContext('2d');
 
-        const fontsize = 12;
 
+        const fontsize = 30;
+
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
         ctx.font = `${fontsize}px monospace`;
-        ctx.fillText('hello world', 0, 96);
-        ctx.fillStyle = 'rgba(32, 32, 200, 0.3)';
-        ctx.fillRect(0, 0, 500, 100);
+        ctx.fillText('hello world', 0, fontsize + 1);
 
         var texture = new THREE.Texture(canvas) 
         texture.needsUpdate = true;
         var spriteMaterial = new THREE.SpriteMaterial( { map: texture, useScreenCoordinates: false } );
         var sprite = new THREE.Sprite( spriteMaterial );
-        //sprite.scale.set(0.05 * fontsize, 0.025 * fontsize, 0.075 * fontsize);
+        sprite.scale.set(fontsize, fontsize, fontsize);
         return sprite;  
     }
 
