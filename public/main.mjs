@@ -398,7 +398,6 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     //s = "11"
 
     const nodes = [
-<<<<<<< HEAD
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: "todo" },
         { x: -126, z: -116, size:  20, label: "European Immigration", content: "todo" },
@@ -410,25 +409,21 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: "todo" },
 
         // bottom left
-        { x: -175, z: - 15, size:  20, label: "Compromise of 1850", content: "todo" },
-        { x: -134, z:  112, size:  20, label: "Free Labor Ideology", content: "todo" },
-        { x: - 30, z: - 15, size:  20, label: "Anti-slavery Sentiment", content: "todo" },
+        { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: "todo" },
+        { x: -134, z:  112, size:  30, label: "Free Labor Ideology", content: "todo" },
+        { x: -114, z:   63, size:  45, label: "Anti-slavery Sentiment", content: "todo" },
+        { x: - 81, z:   11, size:  45, label: "North Harbors Escapees", content: "todo" },
 
         // bottom center
-        { x: - 30, z: - 25, size:  69, label: "Cotton is King", content: "todo" },
-        { x: - 23, z: - 25, size:  20, label: "Strong Economic Incentives", content: "todo" },
+        { x: - 31, z:   72, size:  35, label: "Cotton is King", content: "todo" },
+        { x: - 25, z:   24, size:  20, label: "Strong Economic Incentives", content: "todo" },
 
         // central three themes
         { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: "todo" },
         { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: "todo" },
+        { x: - 30, z: - 15, size:  80, label: "Conflict over Slavery", content: "todo" },
 
         { x:   54, z: - 77, size: 120, label: "The Civil War", y: 17, content: "todo" },
-=======
-	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-	{ x: 0, y: 0, z: -0.5, size: 1, label: "the world turned upside down", content: COMPROMISE_1850 },
-	//{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
->>>>>>> 41e2620f528fe2badd8f879edc8f0228b5a8c62a
     ]
 
     function makeTextSprite(text) {
