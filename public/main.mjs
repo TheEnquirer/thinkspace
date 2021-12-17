@@ -23,8 +23,8 @@ const loader = new GLTFLoader();
 const scene = new THREE.Scene(); // init scene
 const clock = new THREE.Clock();
 
-const CLICK_DISTANCE = 30;
-const MODAL_DISTANCE = 5;
+const CLICK_DISTANCE = 200;
+const MODAL_DISTANCE = 20;
 const MOVE_SPEED = 0.5;
 const VERTICAL_MOVE_SPEED = 0.5
 
@@ -127,7 +127,7 @@ function initSky() {
     // init fog particles
     const material = (() => {
 	//let fogg = new THREE.FogExp2( '#bbb09b', 0.113 );
-	//scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
+    scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
 	//scene.fog = new THREE.FogExp2( '#b78a5f', 0.013 );
 	//scene.fog = new THREE.FogExp2( '#bc946f', 0.013 );
         const geometry = new THREE.BufferGeometry();
@@ -393,13 +393,9 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
 
-
-
-    //s = "11"
-
     const nodes = [
         // top left reasons
-        { x: -200, z: -114, size:  30, label: "European Food Shortages", content: "todo" },
+        { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
         { x: -126, z: -116, size:  20, label: "European Immigration", content: "todo" },
         { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: "todo" },
         { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: "todo" },
@@ -409,7 +405,7 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: "todo" },
 
         // bottom left
-        { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: "todo" },
+        { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: COMPROMISE_1850 },
         { x: -134, z:  112, size:  30, label: "Free Labor Ideology", content: "todo" },
         { x: -114, z:   63, size:  45, label: "Anti-slavery Sentiment", content: "todo" },
         { x: - 81, z:   11, size:  45, label: "North Harbors Escapees", content: "todo" },
@@ -468,7 +464,7 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         light.position.set(n.x, n.y + 3 || 10, n.z);
         scene.add(light);
 
-        return { mesh: label};
+        return { mesh: label, content: n.content };
     });
 
     return geofenced;
@@ -540,7 +536,6 @@ document.getElementsByTagName('canvas')[0].addEventListener('click', onDocumentM
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
-    console.log(camera.position)
     event.preventDefault();
 
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
