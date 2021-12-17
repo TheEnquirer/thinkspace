@@ -440,9 +440,39 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         ctx.font = `bold ${fontsize}px Helvetica`;
         ctx.fillStyle = "#c4daff";
         ctx.strokeStyle = ctx.fillStyle;
-        const text_width = ctx.measureText(text);
-        ctx.fillText(text, 150 - text_width.width/2, 150);
-        ctx.strokeRect(150 - text_width.width/2 - 10, 150-fontsize, text_width.width + 20, fontsize + 10)
+        (() => {
+            function getLines(ctx, text, maxWidth) {
+                var words = text.split(" ");
+                var lines = [];
+                var currentLine = words[0];
+
+                for (var i = 1; i < words.length; i++) {
+                    var word = words[i];
+                    var width = ctx.measureText(currentLine + " " + word).width;
+                    if (width < maxWidth) {
+                        currentLine += " " + word;
+                    } else {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            }
+            function drawCentered(line, lines_below) {
+                const line_width = ctx.measureText(line);
+                ctx.fillText(line, 150 - line_width.width/2, 150 - fontsize * lines_below);
+            }
+            const lines = getLines(ctx, text, res_w / ratio - 20);
+            console.log('got lines', lines);
+            for (let i=lines.length; i>0; i--) {
+                drawCentered(lines[i-1], lines.length-i);
+            }
+            console.log(lines.map(l => ctx.measureText(l).width));
+            const max_line_width = lines.map(l => ctx.measureText(l).width).reduce((a, c) => Math.max(a, c), -Infinity);
+            console.log('max line width', max_line_width);
+            ctx.strokeRect(150 - max_line_width/2 - 10, 150-fontsize*lines.length - 2, max_line_width + 20, fontsize*lines.length + 12)
+        })();
 
         // convert canvas to sprite
         var texture = new THREE.Texture(canvas) 
@@ -451,6 +481,7 @@ A debate over slavery in the territories had erupted during the Mexican–Americ
         spriteMaterial.depthTest = false;
         var sprite = new THREE.Sprite( spriteMaterial );
         sprite.scale.set(fontsize, fontsize, fontsize);
+        console.log('finished creating text')
         return sprite;  
     }
 
