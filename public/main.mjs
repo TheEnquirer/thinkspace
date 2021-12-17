@@ -390,9 +390,8 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
         ctx.fillStyle = "#326ccc55";
         ctx.fillRect(0, 0, 10000, 10000);
-        //ctx.fillStyle = "#6cad5088";
-        //ctx.fillRect(100, 100, 50, 50);
-        ctx.font = `${fontsize}px monospace`;
+
+        ctx.font = `bold ${fontsize}px Helvetica`;
         ctx.fillStyle = "#000000";
         const text_width = ctx.measureText(text);
         console.log(text_width);
@@ -409,7 +408,7 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
 
     const sprite = makeTextSprite('ayoO what if we have a lot of words in a description');
     sprite.position.x = -40;
-    sprite.position.y = 10;
+    sprite.position.y = 7;
     sprite.position.z = -40;
     console.log(sprite);
     scene.add(sprite);
@@ -426,7 +425,7 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
     for (let n of geofenced) {
         n.mesh.position.x = n.data.x;
         n.mesh.position.z = n.data.y;
-	n.mesh.position.y = (n.data.z? n.data.z : 1);
+        n.mesh.position.y = n.data.z || 7;
         scene.add( n.mesh );
     };
 
@@ -499,6 +498,7 @@ document.getElementsByTagName('canvas')[0].addEventListener('click', onDocumentM
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
+    console.log(camera.position)
     event.preventDefault();
 
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
