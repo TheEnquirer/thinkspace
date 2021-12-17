@@ -323,10 +323,17 @@ class CommentThread {
 }
 
 const geofenced = (() => {
-    const IRISH_FAMINE = ` 
+    const IRISH_FAMINE = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
     Great Famine (Ireland)
+    <a href="
+	https://en.wikipedia.org/wiki/Great_Famine_(Ireland)
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
 
     </b> <br>
     <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
