@@ -862,7 +862,7 @@ Understanding both how extraordinarily profitable cotton was and how interconnec
     " target="_blank"
     style=" color: #424242; font-size: 1.8rem;
     text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
-    
+
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
@@ -870,7 +870,45 @@ Understanding both how extraordinarily profitable cotton was and how interconnec
     const FEAR_OF_GOVT_OVERREACH = `
     <iframe class="w-full h-1/3" src="https://www.youtube.com/embed/a_uFsdgVXBE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     `
+    const ECON = `
 
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Slavery as the Economic Engine of the South
+    <a href="
+    https://www.history.com/news/slavery-profitable-southern-economy
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+With cash crops of tobacco, cotton and sugar cane, America’s southern states became the economic engine of the burgeoning nation. Their fuel of choice? Human slavery.
+<br>
+If the Confederacy had been a separate nation, it would have ranked as the fourth richest in the world at the start of the Civil War. The slave economy had been very good to American prosperity. By the start of the war, the South was producing 75 percent of the world’s cotton and creating more millionaires per capita in the Mississippi River valley than anywhere in the nation. Enslaved workers represented Southern planters’ most significant investment—and the bulk of their wealth.
+
+
+<br>
+<br>
+Building a commercial enterprise out of the wilderness required labor and lots of it. For much of the 1600s, the American colonies operated as agricultural economies, driven largely by indentured servitude. Most workers were poor, unemployed laborers from Europe who, like others, had traveled to North America for a new life. In exchange for their work, they received food and shelter, a rudimentary education and sometimes a trade.
+
+
+<br>
+
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.history.com/news/slavery-profitable-southern-economy
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
     const nodes = [
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
@@ -890,7 +928,7 @@ Understanding both how extraordinarily profitable cotton was and how interconnec
 
         // bottom center
         { x: - 31, z:   72, size:  35, label: "Cotton is King", content: COTTON_KING },
-        { x: - 25, z:   24, size:  20, label: "Strong Economic Incentives", content: "todo" },
+        { x: - 25, z:   24, size:  20, label: "Strong Economic Incentives", content: ECON },
 
         // central three themes
         { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: FEAR_OF_GOVT_OVERREACH },
