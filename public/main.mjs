@@ -323,10 +323,25 @@ class CommentThread {
 }
 
 const geofenced = (() => {
+    let s = ` 
+    <div style="
+	border: 1px solid red;
+	font-size: 1.5rem;
+
+    "> 
+    The Great Famine (Irish: an Gorta Mór [ənˠ ˈɡɔɾˠt̪ˠə ˈmˠoːɾˠ]), also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland),[1][2] was a period of mass starvation and disease in Ireland from 1845 to 1852.[3] With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol,[4] loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47".[5][6] During the Great Hunger, about 1 million people died and more than a million fled the country,[7] causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851.[8][9][10] Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.[11][12]
+A potato infected with late blight, showing typical rot symptoms
+
+The proximate cause of the famine was a potato blight[13] which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848.[14] From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism.[15][16] Longer-term causes include the system of absentee landlordism[17][18] and single-crop dependence.[19][20]
+</div>
+    `
+    //s = "11"
+
     const nodes = [
-	{ x: 1, y: 1, z: 12, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-        { x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-        { x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
+	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: s },
+	{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
 
     //function makeTextSprite( message, parameters )
@@ -532,7 +547,8 @@ class GeofencedModalManager {
             modal_manager.clear();
         } else {
             if (content !== null) this.target.content = content;
-            modal_manager.setHTML(marked.parse(this.target.content));
+            //modal_manager.setHTML(marked.parse(this.target.content));
+            modal_manager.setHTML(this.target.content);
         }
     }
 }
