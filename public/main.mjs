@@ -771,6 +771,48 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
 
 
 
+    const NORTH_HARBORS = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Antislavery Sentiment
+    <a href="
+    https://www.historyisfun.org/jamestown-settlement/from-africa-to-virginia/antislavery-sentiment/
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+Some Americans began expressing reservations about slavery long before the ferment of opposition to British policies in the 1760s led others to link colonial rights to those of slaves. At first, opposition to slavery arose from moral and religious grounds, but increasingly influenced by economic, cultural or political motives, more Americans began to speak out against slavery and the slave trade.
+
+
+
+
+<br>
+<br>
+In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the first direct attack on slavery and the slave trade in New England. In The Selling of Joseph, Sewell undermined the moral and biblical justifications of slavery by asserting that all men, as sons of Adam, had “equal rights to liberty.” Sewell’s pamphlet gained few converts, but around the same time the Quakers of Pennsylvania slowly and painfully began to confront the contradictions posed by their religious beliefs and their involvement in both the ownership of and trade in slaves.
+
+
+<br>
+
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.historyisfun.org/jamestown-settlement/from-africa-to-virginia/antislavery-sentiment/
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
 
 
 
@@ -795,7 +837,7 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
         { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: COMPROMISE_1850 },
         { x: -134, z:  112, size:  30, label: "Free Labor Ideology", content: FREE_LABOR },
         { x: -114, z:   63, size:  45, label: "Antislavery Sentiment", content: ANTI_SLAVERY_SEN},
-        { x: - 81, z:   11, size:  45, label: "North Harbors Escapees", content: "todo" },
+        { x: - 81, z:   11, size:  45, label: "North Harbors Escapees", content: NORTH_HARBORS },
 
         // bottom center
         { x: - 31, z:   72, size:  35, label: "Cotton is King", content: "todo" },
