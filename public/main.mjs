@@ -674,6 +674,59 @@ For several decades prior to the Civil War, the North was forced to delay or com
     `
 
 
+
+    const FREE_LABOR = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Free Labor Ideology in the North
+    <a href="
+    http://www.vcdh.virginia.edu/solguide/VUS06/essay06c.html
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+In competition with the slave system of the South was the concept of "free labor" advocated by many in the Northeastern states. Although the term might suggest the same meaning, the word "free" had nothing to do with bondage or working for no wage, but rather indicated concepts of freedom, independence, and self-reliance. The concept emphasized an egalitarian vision of individual human potential, the idea that anyone could climb the ladder of success with hard work and dedication. Such concepts and confidence in individual potential sprung from, or were at least supported by, the religious revivalism of the era known as the Second Great Awakening. At the same time, secular American philosophers like Ralph Waldo Emerson and Henry David Thoreau were stressing ideas of self-reliance through concepts like transcendentalism.
+
+
+<br>
+<br>
+Like it had done in Europe years before, industrialization changed the nature of work and production in the Northeast. In the "Agrarian Republic" of early America, the home was the center of manufacture and production. Skilled workers learned specialized trades through apprenticeships. Industry moved the workplace to the factory where machinery required far fewer skills from laborers. The textile mills in Massachusetts stand as the most classic example of early American industrialization.
+
+
+<br>
+
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    http://www.vcdh.virginia.edu/solguide/VUS06/essay06c.html
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const nodes = [
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
@@ -687,7 +740,7 @@ For several decades prior to the Civil War, the North was forced to delay or com
 
         // bottom left
         { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: COMPROMISE_1850 },
-        { x: -134, z:  112, size:  30, label: "Free Labor Ideology", content: "todo" },
+        { x: -134, z:  112, size:  30, label: "Free Labor Ideology", content: FREE_LABOR },
         { x: -114, z:   63, size:  45, label: "Anti-slavery Sentiment", content: "todo" },
         { x: - 81, z:   11, size:  45, label: "North Harbors Escapees", content: "todo" },
 
