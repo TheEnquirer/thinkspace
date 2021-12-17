@@ -6,6 +6,7 @@ import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/
 import { Sky } from 'https://cdn.skypack.dev/three/examples/jsm/objects/Sky.js'
 
 import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/DRACOLoader.js';
 import { FontLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometries/TextGeometry.js';
 
@@ -28,6 +29,10 @@ const MODAL_DISTANCE = 5;
 const MOVE_SPEED = 0.2;
 const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
 window.localStorage.setItem('username', USER);
+
+//const newloader = new DRACOLoader();
+//newloader.setDecoderPath('/examples/js/libs/draco/');
+//newloader.preload();
 
 ///////////////////////////////////////
 //                                   //
@@ -148,7 +153,7 @@ function initSky() {
 initSky();
 const world = await (async () => {
     const world = await new Promise((res, rej) => {
-        loader.load('models/untitled.glb', res, undefined, rej);
+        loader.load('models/FINAL1.glb', res, undefined, rej);
     });
     world.scene.scale.x = 1;
     world.scene.scale.y = 1;
