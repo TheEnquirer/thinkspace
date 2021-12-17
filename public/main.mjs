@@ -26,7 +26,8 @@ const clock = new THREE.Clock();
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
 const MOVE_SPEED = 0.2;
-const USER = "john";
+const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
+window.localStorage.setItem('username', USER);
 
 ///////////////////////////////////////
 //                                   //
@@ -162,8 +163,11 @@ const world = await (async () => {
 //             COMMENTS              //
 //                                   //
 ///////////////////////////////////////
+const allComments = {};
 
-const allComments = []
+function promptForComment() {
+    return prompt("Please enter your comment");
+}
 
 const getPositionInfrontOfCamera = (camera) => {
     var dist = 3;
@@ -171,46 +175,41 @@ const getPositionInfrontOfCamera = (camera) => {
     camera.getWorldDirection(cwd);
     cwd.multiplyScalar(dist);
     cwd.add(camera.position);
-    return [cwd.x, cwd.y, cwd.z]
+    return [cwd.x, cwd.y, cwd.z];
 }
 
 const initializeComment = () => {
-    let message = prompt("ayo wha u wanna say", "nuffin much"); // TODO: change
+    let message = promptForComment(); // TODO: change
     if (message === null) return;
-    console.log("adding a comment!");
     addCommentToDb(USER, message, getPositionInfrontOfCamera(camera), []);
 }
 
-const commentCreatedSubscription = supabaseClient
-  .from('comments')
-  .on('INSERT', payload => {
-      console.log('got new comment', payload)
-      allComments.push(new CommentThread(payload));
-  }).subscribe();
-
-console.log(commentCreatedSubscription)
-
-// TODO: subscribe to comment new text added
+supabaseClient
+    .from('comments')
+    .on('INSERT', payload => {
+        allComments[payload.id] = new CommentThread(payload); // TODO: test
+    }).subscribe();
 
 supabaseClient
     .from('comments')
     .on('UPDATE', payload => {
-        console.log('update', payload);
+        if (active_comment?.dbid === payload.new.id)
+            active_comment.beANarcissist();
     }).subscribe();
 
 const loadComments = async () => {
     const { data, error } = await supabaseClient
-	.from('comments')
-	.select()
+        .from('comments')
+        .select()
     console.log(data);
     return data
 }
 
 (async () => {
     const comments = await loadComments()
-    //console.log(comments)
+    console.log(comments)
     for (const c of comments) { 
-        allComments.push(new CommentThread({ new: c }));
+        allComments[c.id] = new CommentThread({ new: c });
     }
 })();
 
@@ -229,10 +228,9 @@ class Comment {
         setTimeout(() => {
             document.getElementById(`clickhandle-autogen-${this.session_id}`)
                 .addEventListener('click', () => {
-                    const content = 'emacs';
-                    //const content = prompt('ayo wha u wan say?');
+                    const content = promptForComment();
                     if (content === null) return;
-                    this.addReply('whos the author todo', content);
+                    this.addReply(USER, content);
                 });
         }, 1, { once: true });
         // TODO: make sure event listeners are killed when events are killed, or we will memory leak to all hell
@@ -243,8 +241,7 @@ class Comment {
                 <span class="text-gray-200 font-mono">${this.user}</span>
                 <span class="text-gray-400 font-mono">said  <a id="clickhandle-autogen-${this.session_id}" class="text-xs">(reply)</a>
                 <br>
-                <div class="p-4">
-                    ${this.session_id}
+                <div class="p-4 text-gray-50">
                     ${marked.parse(this.text)}
                 </div>
             </div>
@@ -270,8 +267,8 @@ class Comment {
     }
 }
 
-let clickables = [];    // must implement handleClick(clickevent)
 let active_comment = null;
+let clickables = [];    // must implement handleClick(clickevent)
 class CommentThread {
     constructor(wtfisav) {
         this.mesh = new THREE.Mesh(
@@ -303,24 +300,19 @@ class CommentThread {
     beANarcissist() {
         modal_manager.setHTML(this.toplevel.render());
     }
-    blur() {    // @TheEnquirer use this to leave a comment
+    blur() {
         modal_manager.clear();
         setTimeout(() => { active_comment = null; }, 1);    // TODO: scuffed as hell: delay to ensure active comment null check in handleClick goes through, to disable jumping from one comment to another directly
     }
     uploadSelf() {
-        const children = this.toplevel.serialize();
-        console.log('updating thread', this.dbid, 'with', JSON.stringify(children.children))
+        const children = this.toplevel.serialize().children;
         supabaseClient
             .from('comments')
-            //.update({ children: JSON.stringify(children.children) })
-            //.update({ children: children.children })
-            .update({ children: ['yes'] })
-            //.eq('id', this.dbid)
-            .eq('text', 'nuffin much')
+            .update({ children: children })
+            .match({ id: this.dbid })
+            .then().catch(console.error);
     }
 }
-
-supabaseClient.from('*').on('UPDATE', console.log);
 
 const geofenced = (() => {
     const nodes = [
@@ -494,13 +486,13 @@ function animate(timestamp) {
     if (up) { camera.position.y += 0.1; }
     if (down) { camera.position.y -= 0.1; }
     if (manual_move) {
-	if (moving[0]) { camera.translateZ(  -MOVE_SPEED ) }
-	if (moving[1]) { camera.translateX(  -MOVE_SPEED ) }
-	if (moving[2]) { camera.translateZ(  MOVE_SPEED  ) }
-	if (moving[3]) { camera.translateX(  MOVE_SPEED  ) }
+        if (moving[0]) { camera.translateZ( -MOVE_SPEED ) }
+        if (moving[1]) { camera.translateX( -MOVE_SPEED ) }
+        if (moving[2]) { camera.translateZ(  MOVE_SPEED ) }
+        if (moving[3]) { camera.translateX(  MOVE_SPEED ) }
     }
 
-    for (const c of allComments) {
+    for (const c of Object.values(allComments)) {
         c.mesh.rotation.y += 0.0025
         //console.log(i)
     }
