@@ -25,7 +25,8 @@ const clock = new THREE.Clock();
 
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
-const MOVE_SPEED = 0.2;
+const MOVE_SPEED = 0.5;
+const VERTICAL_MOVE_SPEED = 0.5
 
 //const newloader = new DRACOLoader();
 //newloader.setDecoderPath('/examples/js/libs/draco/');
@@ -57,12 +58,12 @@ const renderer = (() => {
     renderer.setSize( window.innerWidth, window.innerHeight );
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.5;
+    renderer.toneMappingExposure = 0.4776;
     return renderer;
 })();
 const controls = (() => {
     const controls = new FirstPersonControls( camera, renderer.domElement );
-    controls.movementSpeed = 10;
+    controls.movementSpeed = 20;
     controls.lookSpeed = 0.2;
     controls.enabled = false;
     return controls;
@@ -86,13 +87,20 @@ function initSky() {
 
     // GUI
     const effectController = {
-        turbidity: 10,
-        rayleigh: 3,
-        mieCoefficient: 0.005,
-        mieDirectionalG: 0.7,
-        elevation: 2,
+        //turbidity: 10,
+        //rayleigh: 3,
+        //mieCoefficient: 0.005,
+        //mieDirectionalG: 0.7,
+        //elevation: 2,
+        //azimuth: 180,
+        exposure: renderer.toneMappingExposure,
+        turbidity: 10.3,
+        rayleigh: 3.533,
+        mieCoefficient: 0.006,
+        mieDirectionalG: 0.416,
+        elevation: 0.1,
         azimuth: 180,
-        exposure: renderer.toneMappingExposure
+
     };
 
     function guiChanged() {
@@ -117,18 +125,22 @@ function initSky() {
 
 
     guiChanged();
+    //scene.add(GUI)
 
     // init fog particles
     const material = (() => {
-        scene.fog = new THREE.FogExp2( '#9babbb', 0.003 );
+	//let fogg = new THREE.FogExp2( '#bbb09b', 0.113 );
+	scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
+	//scene.fog = new THREE.FogExp2( '#b78a5f', 0.013 );
+	//scene.fog = new THREE.FogExp2( '#bc946f', 0.013 );
         const geometry = new THREE.BufferGeometry();
         const vertices = [];
 
-        for ( let i = 0; i < 10000; i ++ ) {
+        for ( let i = 0; i < 15000; i ++ ) {
 
-            const x = 3000 * Math.random() - 1000;
-            const y = 3000 * Math.random() - 1000;
-            const z = 3000 * Math.random() - 1000;
+            const x = 3500 * Math.random() - 2000;
+            const y = 3500 * Math.random() - 2000;
+            const z = 3500 * Math.random() - 2000;
 
             vertices.push( x, y, z );
 
@@ -311,10 +323,25 @@ class CommentThread {
 }
 
 const geofenced = (() => {
+    let s = ` 
+    <div style="
+	border: 1px solid red;
+	font-size: 1.5rem;
+
+    "> 
+    The Great Famine (Irish: an Gorta Mór [ənˠ ˈɡɔɾˠt̪ˠə ˈmˠoːɾˠ]), also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland),[1][2] was a period of mass starvation and disease in Ireland from 1845 to 1852.[3] With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol,[4] loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47".[5][6] During the Great Hunger, about 1 million people died and more than a million fled the country,[7] causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851.[8][9][10] Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.[11][12]
+A potato infected with late blight, showing typical rot symptoms
+
+The proximate cause of the famine was a potato blight[13] which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848.[14] From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism.[15][16] Longer-term causes include the system of absentee landlordism[17][18] and single-crop dependence.[19][20]
+</div>
+    `
+    //s = "11"
+
     const nodes = [
-        { x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-        { x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
-        { x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
+	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: s },
+	{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
     ]
 
     //function makeTextSprite( message, parameters )
@@ -399,7 +426,7 @@ const geofenced = (() => {
     for (let n of geofenced) {
         n.mesh.position.x = n.data.x;
         n.mesh.position.z = n.data.y;
-        n.mesh.position.y = 1;
+	n.mesh.position.y = (n.data.z? n.data.z : 1);
         scene.add( n.mesh );
     };
 
@@ -515,7 +542,7 @@ class GeofencedModalManager {
         // TODO: cant get glowing working
         if (this.target !== null) {
             this.target.mesh.material.color.setHex(0xcccccc);
-            this.target.mesh.position.y = 1;
+	    //this.target.mesh.position.y = 1;
         }
         if (active_comment !== null) return;    // get overriden by active comment
         this.target = obj;
@@ -528,7 +555,8 @@ class GeofencedModalManager {
             modal_manager.clear();
         } else {
             if (content !== null) this.target.content = content;
-            modal_manager.setHTML(marked.parse(this.target.content));
+            //modal_manager.setHTML(marked.parse(this.target.content));
+            modal_manager.setHTML(this.target.content);
         }
     }
 }
@@ -539,8 +567,8 @@ function animate(timestamp) {
     requestAnimationFrame( animate );
     renderer.setSize( window.innerWidth, window.innerHeight );
 
-    if (up) { camera.position.y += 0.1; }
-    if (down) { camera.position.y -= 0.1; }
+    if (up) { camera.position.y += VERTICAL_MOVE_SPEED; }
+    if (down) { camera.position.y -= VERTICAL_MOVE_SPEED; }
     if (manual_move) {
         if (moving[0]) { camera.translateZ( -MOVE_SPEED ) }
         if (moving[1]) { camera.translateX( -MOVE_SPEED ) }
