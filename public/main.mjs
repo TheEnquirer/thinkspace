@@ -94,7 +94,6 @@ function initSky() {
     };
 
     function guiChanged() {
-
         const uniforms = sky.material.uniforms;
         uniforms[ 'turbidity' ].value = effectController.turbidity;
         uniforms[ 'rayleigh' ].value = effectController.rayleigh;
@@ -110,19 +109,12 @@ function initSky() {
 
         renderer.toneMappingExposure = effectController.exposure;
         renderer.render( scene, camera );
-
     }
-
-
     guiChanged();
-    //scene.add(GUI)
 
     // init fog particles
     const material = (() => {
-	//let fogg = new THREE.FogExp2( '#bbb09b', 0.113 );
     scene.fog = new THREE.FogExp2( '#bbb09b', 0.013 );
-	//scene.fog = new THREE.FogExp2( '#b78a5f', 0.013 );
-	//scene.fog = new THREE.FogExp2( '#bc946f', 0.013 );
         const geometry = new THREE.BufferGeometry();
         const vertices = [];
 
