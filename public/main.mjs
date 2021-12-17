@@ -348,7 +348,7 @@ The proximate cause of the famine was a potato blight which infected potato crop
     const POLITICAL_PARTY_WELFARE = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
-    Compromise of 1850
+    Society of Tammany Hall and Welfare
     <a href="
     https://en.wikipedia.org/wiki/Tammany_Hall
     "
@@ -583,26 +583,12 @@ Douglas was elected in 1846 to the U.S. Senate, in which he served until his dea
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     `
 
     const CONFLICT_OVER_SLAVERY = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
-    American Civil War
+    Conflict over Slavery
     <a href="
     https://www.nps.gov/liho/learn/historyculture/slavery-cause-civil-war.htm
     "
