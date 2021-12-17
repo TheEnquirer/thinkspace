@@ -636,6 +636,43 @@ The practice of slavery in the United States was one of the key political issues
 
  `
 
+    const EXPAN_INDU = `
+
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Civil War and Industrial Expansion
+    <a href="
+    https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/civil-war-and-industrial-expansion-1860-1897-overview
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+The period between the American Civil War (1861–65) and the end of the nineteenth century in the United States was marked by tremendous expansion of industry and agriculture as well as the spread of settlement across the continent. The population of the United States more than doubled during this period. In its report on the 1890 census the Bureau of the Census declared the frontier closed. Most of the economic growth was concentrated in the Northeast, Midwest, and plains states. The South remained largely agricultural, its total industrial production totaling about half that of New York State. The Northeast clearly emerged as the industrial core of the nation with 85 percent of the nation's manufacturing, processing raw materials from the Midwest and West.
+
+
+<br>
+<br>
+For several decades prior to the Civil War, the North was forced to delay or compromise several of its national economic policy objectives due to Southern opposition and the strong position the Southern states held in the Senate. As soon as the Southern states seceded Congress began enacting this delayed agenda. The Morrill Tariff of 1861 raised rates to 20 percent on average, ending more than 30 years of declining tariffs. Funding for three transcontinental railroads was enacted in the Transcontinental Railroad Act. The Morrill Land Grant Act (1862) established agricultural and mechanical colleges by allotting each state that remained in the Union 30,000 acres of land for each member of Congress. The Homestead Act (1862) provided 160 acres (a quarter section) in western territories free to anyone who settled on it for five years and declared their intention to become a citizen. Each of these policies profoundly shaped the development of the U.S. economy for the rest of the century.
+<br>
+
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://www.encyclopedia.com/history/encyclopedias-almanacs-transcripts-and-maps/civil-war-and-industrial-expansion-1860-1897-overview
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+
+    `
+
 
     const nodes = [
         // top left reasons
@@ -646,7 +683,7 @@ The practice of slavery in the United States was one of the key political issues
 
         // top right reasons
         { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: DOUGLASS },
-        { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: "todo" },
+        { x: - 11, z: -168, size:  30, label: "Expansion and Industrialization", content: EXPAN_INDU },
 
         // bottom left
         { x: -175, z:   61, size:  30, label: "Compromise of 1850", content: COMPROMISE_1850 },
