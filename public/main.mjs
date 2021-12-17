@@ -794,17 +794,13 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
 
-
-
-
-
     const NORTH_HARBORS = `
 
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
-    Antislavery Sentiment
+    South Carolina Statement of Succession
     <a href="
-    https://www.historyisfun.org/jamestown-settlement/from-africa-to-virginia/antislavery-sentiment/
+    https://www.battlefields.org/learn/primary-sources/declaration-causes-seceding-states#South_Carolina
     "
     style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
 	target="_blank">
@@ -814,22 +810,16 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
     </b> <br>
     <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
 
-Some Americans began expressing reservations about slavery long before the ferment of opposition to British policies in the 1760s led others to link colonial rights to those of slaves. At first, opposition to slavery arose from moral and religious grounds, but increasingly influenced by economic, cultural or political motives, more Americans began to speak out against slavery and the slave trade.
+In the present case, that fact is established with certainty. We assert that fourteen of the States have deliberately refused, for years past, to fulfill their constitutional obligations, and we refer to their own Statutes for the proof.
 
+The Constitution of the United States, in its fourth Article, provides as follows: "No person held to service or labor in one State, under the laws thereof, escaping into another, shall, in consequence of any law or regulation therein, be discharged from such service or labor, but shall be delivered up, on claim of the party to whom such service or labor may be due."
 
-
-
-<br>
-<br>
-In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the first direct attack on slavery and the slave trade in New England. In The Selling of Joseph, Sewell undermined the moral and biblical justifications of slavery by asserting that all men, as sons of Adam, had “equal rights to liberty.” Sewell’s pamphlet gained few converts, but around the same time the Quakers of Pennsylvania slowly and painfully began to confront the contradictions posed by their religious beliefs and their involvement in both the ownership of and trade in slaves.
-
-
-<br>
+This stipulation was so material to the compact, that without it that compact would not have been made. The greater number of the contracting parties held slaves, and they had previously evinced their estimate of the value of such a stipulation by making it a condition in the Ordinance for the government of the territory ceded by Virginia, which now composes the States north of the Ohio River.
 
     <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
     ">
     <a href="
-    https://www.historyisfun.org/jamestown-settlement/from-africa-to-virginia/antislavery-sentiment/
+    https://www.battlefields.org/learn/primary-sources/declaration-causes-seceding-states#South_Carolina
     " target="_blank"
     style=" color: #424242; font-size: 1.8rem;
     text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
@@ -837,18 +827,6 @@ In 1700 Samuel Sewell, a wealthy merchant from Massachusetts, published the firs
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
-
-
-
-
-
-
-
-
-
-
-
-
 
     const nodes = [
         // top left reasons
