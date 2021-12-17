@@ -345,6 +345,36 @@ The proximate cause of the famine was a potato blight which infected potato crop
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
 
+    const POLITICAL_PARTY_WELFARE = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Compromise of 1850
+    <a href="
+    https://en.wikipedia.org/wiki/Tammany_Hall
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+Tammany Hall, also known as the Society of St. Tammany, the Sons of St. Tammany, or the Columbian Order, was a New York City political organization founded in 1786 and incorporated on May 12, 1789, as the Tammany Society. It became the main local political machine of the Democratic Party, and played a major role in controlling New York City and New York State politics and helping immigrants, most notably the Irish, rise in American politics from the 1790s to the 1960s. It typically controlled Democratic Party nominations and political patronage in Manhattan after the mayoral victory of Fernando Wood in 1854, and used its patronage resources to build a loyal, well-rewarded core of district and precinct leaders; after 1850 the vast majority were Irish Catholics due to mass immigration from Ireland during and after the Irish Famine.
+
+The Tammany Society emerged as the center for Democratic-Republican Party politics in the city in the early 19th century. After 1854, the Society expanded its political control even further by earning the loyalty of the city's rapidly expanding immigrant community, which functioned as its base of political capital. The business community appreciated its readiness, at moderate cost, to cut through regulatory and legislative mazes to facilitate rapid economic growth. The Tammany Hall ward boss or ward heeler, as wards were the city's smallest political units from 1786 to 1938, served as the local vote gatherer and provider of patronage. By 1872 Tammany had an Irish Catholic "boss", and in 1928 a Tammany hero, New York Governor Al Smith, won the Democratic presidential nomination. However, Tammany Hall also served as an engine for graft and political corruption, perhaps most infamously under William M. "Boss" Tweed in the mid-19th century. By the 1880s, Tammany was building local clubs that appealed to social activists from the ethnic middle class. In quiet times the machine had the advantage of a core of solid supporters and usually exercised control of politics and policymaking in Manhattan; it also played a major role in the state legislature in Albany.
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/Tammany_Hall
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
     const COMPROMISE_1850 = `
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
@@ -616,9 +646,9 @@ The roots of the crisis over slavery that gripped the nation in 1860–1861 go b
     </b> <br>
     <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
 
-The American Civil War (April 12, 1861 – May 9, 1865) (also known by other names) was a civil war in the United States fought between the Union (states that remained loyal to the federal union, or "the North") and the Confederacy (states that voted to secede, or "the South").[e] The central cause of the war was the status of slavery, especially the expansion of slavery into territories acquired as a result of the Louisiana Purchase and the Mexican–American War.[14] On the eve of the civil war in 1860, four million of the 32 million Americans (~13%) were enslaved black people, almost all in the South.[15]
+The American Civil War (April 12, 1861 – May 9, 1865) (also known by other names) was a civil war in the United States fought between the Union (states that remained loyal to the federal union, or "the North") and the Confederacy (states that voted to secede, or "the South"). The central cause of the war was the status of slavery, especially the expansion of slavery into territories acquired as a result of the Louisiana Purchase and the Mexican–American War. On the eve of the civil war in 1860, four million of the 32 million Americans (~13%) were enslaved black people, almost all in the South.
 
-The practice of slavery in the United States was one of the key political issues of the 19th century. Decades of political unrest over slavery led up to the civil war. Disunion came after Abraham Lincoln won the 1860 United States presidential election on an anti-slavery expansion platform. An initial seven southern slave states declared their secession from the country to form the Confederacy. Confederate forces seized federal forts within territory they claimed. The last minute Crittenden Compromise tried to avert conflict but failed; both sides prepared for war. Fighting broke out in April 1861 when the Confederate army began the Battle of Fort Sumter in South Carolina, just over a month after the first inauguration of Abraham Lincoln. The Confederacy grew to control at least a majority of territory in eleven states (out of the 34 U.S. states in February 1861), and asserted claims to two more. The states that remained loyal to the federal government were known as the Union.[f] Both sides raised large volunteer and conscription armies. Four years of intense combat, mostly in the South, ensued.
+The practice of slavery in the United States was one of the key political issues of the 19th century. Decades of political unrest over slavery led up to the civil war. Disunion came after Abraham Lincoln won the 1860 United States presidential election on an anti-slavery expansion platform. An initial seven southern slave states declared their secession from the country to form the Confederacy. Confederate forces seized federal forts within territory they claimed. The last minute Crittenden Compromise tried to avert conflict but failed; both sides prepared for war. Fighting broke out in April 1861 when the Confederate army began the Battle of Fort Sumter in South Carolina, just over a month after the first inauguration of Abraham Lincoln. The Confederacy grew to control at least a majority of territory in eleven states (out of the 34 U.S. states in February 1861), and asserted claims to two more. The states that remained loyal to the federal government were known as the Union. Both sides raised large volunteer and conscription armies. Four years of intense combat, mostly in the South, ensued.
 
 <br>
     <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
@@ -633,40 +663,6 @@ The practice of slavery in the United States was one of the key political issues
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
 
 `
-
-
- const WELFARE = `
-    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
-
-    American Civil War
-    <a href="
-    https://en.wikipedia.org/wiki/American_Civil_War
-    "
-    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
-	target="_blank">
-	transclusion source
-    </a>
-
-    </b> <br>
-    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
-
-The American Civil War (April 12, 1861 – May 9, 1865) (also known by other names) was a civil war in the United States fought between the Union (states that remained loyal to the federal union, or "the North") and the Confederacy (states that voted to secede, or "the South").[e] The central cause of the war was the status of slavery, especially the expansion of slavery into territories acquired as a result of the Louisiana Purchase and the Mexican–American War.[14] On the eve of the civil war in 1860, four million of the 32 million Americans (~13%) were enslaved black people, almost all in the South.[15]
-
-The practice of slavery in the United States was one of the key political issues of the 19th century. Decades of political unrest over slavery led up to the civil war. Disunion came after Abraham Lincoln won the 1860 United States presidential election on an anti-slavery expansion platform. An initial seven southern slave states declared their secession from the country to form the Confederacy. Confederate forces seized federal forts within territory they claimed. The last minute Crittenden Compromise tried to avert conflict but failed; both sides prepared for war. Fighting broke out in April 1861 when the Confederate army began the Battle of Fort Sumter in South Carolina, just over a month after the first inauguration of Abraham Lincoln. The Confederacy grew to control at least a majority of territory in eleven states (out of the 34 U.S. states in February 1861), and asserted claims to two more. The states that remained loyal to the federal government were known as the Union.[f] Both sides raised large volunteer and conscription armies. Four years of intense combat, mostly in the South, ensued.
-
-<br>
-    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
-    ">
-    <a href="
-    https://en.wikipedia.org/wiki/American_Civil_War
-    " target="_blank"
-    style=" color: #424242; font-size: 1.8rem;
-    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
-    
-    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
-    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
-
- `
 
     const EXPAN_INDU = `
 
@@ -711,7 +707,7 @@ For several decades prior to the Civil War, the North was forced to delay or com
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
         { x: -126, z: -116, size:  20, label: "European Immigration", content: EUROPEAN_IMMIGRATION},
         { x: -207, z: - 38, size:  30, label: "Influx of Escaped Slaves", content: INFLUX },
-        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: WELFARE},
+        { x: -127, z: - 86, size:  50, label: "Political Party Welfare", content: POLITICAL_PARTY_WELFARE },
 
         // top right reasons
         { x: - 69, z: -186, size:  20, label: "Stephen Douglass Philosophy", content: DOUGLASS },
