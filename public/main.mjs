@@ -604,7 +604,35 @@ The practice of slavery in the United States was one of the key political issues
 
 
  const WELFARE = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
+    American Civil War
+    <a href="
+    https://en.wikipedia.org/wiki/American_Civil_War
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+The American Civil War (April 12, 1861 – May 9, 1865) (also known by other names) was a civil war in the United States fought between the Union (states that remained loyal to the federal union, or "the North") and the Confederacy (states that voted to secede, or "the South").[e] The central cause of the war was the status of slavery, especially the expansion of slavery into territories acquired as a result of the Louisiana Purchase and the Mexican–American War.[14] On the eve of the civil war in 1860, four million of the 32 million Americans (~13%) were enslaved black people, almost all in the South.[15]
+
+The practice of slavery in the United States was one of the key political issues of the 19th century. Decades of political unrest over slavery led up to the civil war. Disunion came after Abraham Lincoln won the 1860 United States presidential election on an anti-slavery expansion platform. An initial seven southern slave states declared their secession from the country to form the Confederacy. Confederate forces seized federal forts within territory they claimed. The last minute Crittenden Compromise tried to avert conflict but failed; both sides prepared for war. Fighting broke out in April 1861 when the Confederate army began the Battle of Fort Sumter in South Carolina, just over a month after the first inauguration of Abraham Lincoln. The Confederacy grew to control at least a majority of territory in eleven states (out of the 34 U.S. states in February 1861), and asserted claims to two more. The states that remained loyal to the federal government were known as the Union.[f] Both sides raised large volunteer and conscription armies. Four years of intense combat, mostly in the South, ensued.
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/American_Civil_War
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
 
  `
 
