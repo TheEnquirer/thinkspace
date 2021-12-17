@@ -184,10 +184,19 @@ const initializeComment = () => {
 const commentCreatedSubscription = supabaseClient
   .from('comments')
   .on('INSERT', payload => {
+      console.log('got new comment', payload)
       allComments.push(new CommentThread(payload));
   }).subscribe();
 
+console.log(commentCreatedSubscription)
+
 // TODO: subscribe to comment new text added
+
+supabaseClient
+    .from('comments')
+    .on('UPDATE', payload => {
+        console.log('update', payload);
+    }).subscribe();
 
 const loadComments = async () => {
     const { data, error } = await supabaseClient
@@ -209,12 +218,11 @@ const loadComments = async () => {
 // MESHES
 class Comment {
     constructor(wtfisavnew, parent_thread) {
-        this.author = wtfisavnew.author;
+        this.user = wtfisavnew.user;
         this.text = wtfisavnew.text || "[nothing]";
         this.children = wtfisavnew.children?.map(c => new Comment(c, parent_thread)) || [];
         this.parent_thread = parent_thread;
         this.session_id = nanoid();
-        console.log('created new comment', this.session_id)
     }
     render() {
         // react moment
@@ -232,7 +240,7 @@ class Comment {
         return `
         <div class="pointer-events-auto select-auto border-red-400">
             <div class="rounded-md p-2" style="background-color: rgba(32, 32, 32, 0.2);">
-                <span class="text-gray-200 font-mono">${this.author}</span>
+                <span class="text-gray-200 font-mono">${this.user}</span>
                 <span class="text-gray-400 font-mono">said  <a id="clickhandle-autogen-${this.session_id}" class="text-xs">(reply)</a>
                 <br>
                 <div class="p-4">
@@ -242,7 +250,7 @@ class Comment {
             </div>
             ${
                 this.children.length > 0 ? 
-        `<details class="pointer-events-auto select-auto"><summary>${this.children.length} repl${this.children.length > 1 ? 'ies' : 'y'}...</summary>
+        `<details open class="pointer-events-auto select-auto"><summary>${this.children.length} repl${this.children.length > 1 ? 'ies' : 'y'}...</summary>
             <div class="border-red-700 pl-4">
             ${this.children.map(c => c.render()).join('\n')}
             </div>
@@ -253,10 +261,11 @@ class Comment {
         `;
     }
     serialize() {
-        return { author: this.author, text: this.text, children: [this.children.map(c => c.serialize)] };
+        console.log('serializing', this.session_id)
+        return { user: this.user, text: this.text, children: this.children.map(c => c.serialize()) };
     }
-    addReply(author, text) {
-        this.children.push(new Comment({ author: author, text, children: [], parent_thread: this.parent_thread }));
+    addReply(user, text) {
+        this.children.push(new Comment({ user, text, children: [] }, this.parent_thread));
         this.parent_thread.uploadSelf();
     }
 }
@@ -274,15 +283,13 @@ class CommentThread {
         this.mesh.rotation.set(0, Math.random() * 10, 0);
         this.mesh.cursor = 'pointer';
         this.mesh.click_parent = this;
+        this.dbid = wtfisav.new.id;
         scene.add(this.mesh);
 
         this.toplevel = new Comment(wtfisav.new, this);
 
         clickables.push(this);
-    }
-    appendComment(wtfisav) {
-        //this.comments.push({ author: wtfisav.author, text: wtfisav.text });
-        this.beANarcissist();
+        console.log('new comment thread created')
     }
     handleClick(_) {
         if (active_comment !== null) return;    // only start displaying a comment if nothing is currently active
@@ -301,9 +308,19 @@ class CommentThread {
         setTimeout(() => { active_comment = null; }, 1);    // TODO: scuffed as hell: delay to ensure active comment null check in handleClick goes through, to disable jumping from one comment to another directly
     }
     uploadSelf() {
-        // TODO
+        const children = this.toplevel.serialize();
+        console.log('updating thread', this.dbid, 'with', JSON.stringify(children.children))
+        supabaseClient
+            .from('comments')
+            //.update({ children: JSON.stringify(children.children) })
+            //.update({ children: children.children })
+            .update({ children: ['yes'] })
+            //.eq('id', this.dbid)
+            .eq('text', 'nuffin much')
     }
 }
+
+supabaseClient.from('*').on('UPDATE', console.log);
 
 const geofenced = (() => {
     const nodes = [
