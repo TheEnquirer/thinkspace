@@ -6,6 +6,7 @@ import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/
 import { Sky } from 'https://cdn.skypack.dev/three/examples/jsm/objects/Sky.js'
 
 import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/DRACOLoader.js';
 import { FontLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'https://cdn.skypack.dev/three/examples/jsm/geometries/TextGeometry.js';
 
@@ -24,6 +25,10 @@ const clock = new THREE.Clock();
 const CLICK_DISTANCE = 30;
 const MODAL_DISTANCE = 5;
 const MOVE_SPEED = 0.2;
+
+//const newloader = new DRACOLoader();
+//newloader.setDecoderPath('/examples/js/libs/draco/');
+//newloader.preload();
 
 ///////////////////////////////////////
 //                                   //
@@ -143,7 +148,7 @@ function initSky() {
 initSky();
 let worldPromise = (async () => {
     const world = await new Promise((res, rej) => {
-        loader.load('models/untitled.glb', res, undefined, rej);
+        loader.load('models/FINAL1.glb', res, undefined, rej);
     });
     world.scene.scale.x = 1;
     world.scene.scale.y = 1;
