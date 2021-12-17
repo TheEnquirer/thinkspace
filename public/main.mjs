@@ -320,21 +320,85 @@ class CommentThread {
 }
 
 const geofenced = (() => {
-    let s = ` 
-    <div style="
-	border: 1px solid red;
-	font-size: 1.5rem;
+    const IRISH_FAMINE = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
 
-    "> 
-    The Great Famine (Irish: an Gorta Mór [ənˠ ˈɡɔɾˠt̪ˠə ˈmˠoːɾˠ]), also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland),[1][2] was a period of mass starvation and disease in Ireland from 1845 to 1852.[3] With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol,[4] loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47".[5][6] During the Great Hunger, about 1 million people died and more than a million fled the country,[7] causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851.[8][9][10] Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.[11][12]
+    Great Famine (Ireland)
+    <a href="
+	https://en.wikipedia.org/wiki/Great_Famine_(Ireland)
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    The Great Famine, also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland), was a period of mass starvation and disease in Ireland from 1845 to 1852. With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol, loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47". During the Great Hunger, about 1 million people died and more than a million fled the country, causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851. Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.
 A potato infected with late blight, showing typical rot symptoms
 
-The proximate cause of the famine was a potato blight[13] which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848.[14] From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism.[15][16] Longer-term causes include the system of absentee landlordism[17][18] and single-crop dependence.[19][20]
-</div>
+<br>
+<br>
+
+The proximate cause of the famine was a potato blight which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848. From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism. Longer-term causes include the system of absentee landlordism and single-crop dependence.
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/Great_Famine_(Ireland)
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
+
+    const COMPROMISE_1850 = `
+    <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
+
+    Compromise of 1850
+    <a href="
+	https://en.wikipedia.org/wiki/Compromise_of_1850?scrlybrkr=b9099579
+    "
+    style=" font-size: 0.5rem; position:absolute; left:60px; top:110px; color: #9E9E9E; "
+	target="_blank">
+	transclusion source
+    </a>
+
+    </b> <br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 10px; margin-bottom: 30px; ">
+
+    The Compromise of 1850 was a package of five separate bills passed by the United States Congress in September 1850 that defused a political confrontation between slave and free states on the status of territories acquired in the Mexican–American War. It also set Texas's western and northern borders and included provisions addressing fugitive slaves and the slave trade. The compromise was brokered by Whig senator Henry Clay and Democratic senator Stephen A. Douglas, with the support of President Millard Fillmore.
+
+<br>
+<br>
+
+A debate over slavery in the territories had erupted during the Mexican–American War, as many Southerners sought to expand slavery to the newly-acquired lands and many Northerners opposed any such expansion. The debate was further complicated by Texas's claim to all former Mexican territory north and east of the Rio Grande, including areas it had never effectively controlled. These issues prevented the passage of organic acts to create organized territorial governments for the land acquired in the Mexican–American War. In early 1850, Clay proposed a package of eight bills that would settle most of the pressing issues before Congress. Clay's proposal was opposed by President Zachary Taylor, anti-slavery Whigs like William Seward, and pro-slavery Democrats like John C. Calhoun, and congressional debate over the territories continued. The debates over the bill were the most famous in Congressional history, and the divisions devolved into fistfights and drawn guns on the floor of Congress.
+
+
+<br>
+    <hr style="height: 2px; background-color: #959595; margin-top: 30px; margin-bottom: 30px;
+    ">
+    <a href="
+    https://en.wikipedia.org/wiki/Compromise_of_1850?scrlybrkr=b9099579
+    " target="_blank"
+    style=" color: #424242; font-size: 1.8rem;
+    text-align: center; margin: auto; display: block; margin-left: auto; margin-right: auto; font-weight: 700; " >
+    
+    <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
+    `
+
+
+
     //s = "11"
 
     const nodes = [
+<<<<<<< HEAD
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: "todo" },
         { x: -126, z: -116, size:  20, label: "European Immigration", content: "todo" },
@@ -359,6 +423,12 @@ The proximate cause of the famine was a potato blight[13] which infected potato 
         { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: "todo" },
 
         { x:   54, z: - 77, size: 120, label: "The Civil War", y: 17, content: "todo" },
+=======
+	//{ x: 1, y: 1, size: 1, label: "the world turned upside down", content: "# the world turned upside down\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	{ x: 0, y: 0, z: -0.5, size: 1, label: "the world turned upside down", content: COMPROMISE_1850 },
+	//{ x: 2, y: 5, size: 1, label: "the drinking song they're singing", content: "# ayooooo\n\n1. thing one\n1. thing two\n 1. *thing 3*" },
+	//{ x: 8, y: 2, size: 2, label: "ayo civil war", content: "# civil war time\n\n1. thing one\n1. thing two\n 1. *thing 3*" }
+>>>>>>> 41e2620f528fe2badd8f879edc8f0228b5a8c62a
     ]
 
     function makeTextSprite(text) {
