@@ -325,14 +325,65 @@ class CommentThread {
 const geofenced = (() => {
     let s = ` 
     <div style="
-	border: 1px solid red;
+	//border: 1px solid red;
 	font-size: 1.5rem;
+	background: #fafafa;
+	color: #141414;
+	font-family: helvetica;
+	padding: 34px;
+	border-radius: 8px;
+	line-height: 2;
+	//width: 100%;
+	//border: 1px solid red;
+
 
     "> 
-    The Great Famine (Irish: an Gorta Mór [ənˠ ˈɡɔɾˠt̪ˠə ˈmˠoːɾˠ]), also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland),[1][2] was a period of mass starvation and disease in Ireland from 1845 to 1852.[3] With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol,[4] loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47".[5][6] During the Great Hunger, about 1 million people died and more than a million fled the country,[7] causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851.[8][9][10] Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.[11][12]
+    <b
+	style="
+	    font-size: 2rem;
+	"
+    >Great Famine (Ireland)</b> <br>
+    <hr style="height: 2px; background-color: #959595; 
+    margin-top: 10px;
+    margin-bottom: 30px;
+    ">
+    The Great Famine, also known as the Great Hunger, the Famine (mostly within Ireland) or the Irish Potato Famine (mostly outside Ireland), was a period of mass starvation and disease in Ireland from 1845 to 1852. With the most severely affected areas in the west and south of Ireland, where the Irish language was dominant, the period was contemporaneously known in Irish as an Drochshaol, loosely translated as "the hard times" (or literally "the bad life"). The worst year of the period was 1847, known as "Black '47". During the Great Hunger, about 1 million people died and more than a million fled the country, causing the country's population to fall by 20–25%, in some towns falling as much as 67% between 1841 and 1851. Between 1845 and 1855, no fewer than 2.1 million people left Ireland, primarily on packet ships but also steamboats and barks—one of the greatest mass exoduses from a single island in history.
 A potato infected with late blight, showing typical rot symptoms
+<br>
+<br>
 
-The proximate cause of the famine was a potato blight[13] which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848.[14] From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism.[15][16] Longer-term causes include the system of absentee landlordism[17][18] and single-crop dependence.[19][20]
+The proximate cause of the famine was a potato blight[13] which infected potato crops throughout Europe during the 1840s, causing an additional 100,000 deaths outside Ireland and influencing much of the unrest in the widespread European Revolutions of 1848.[14] From 1846, the impact of the blight was exacerbated by the British Whig government's economic policy of laissez-faire capitalism.[15][16] Longer-term causes include the system of absentee landlordism[17][18] and single-crop dependence.
+
+<br>
+    <hr style="height: 2px; background-color: #959595; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+    ">
+    <a href="https://en.wikipedia.org/wiki/Great_Famine_(Ireland)" target="_blank"
+    style="
+    color: #424242;
+    font-size: 1.8rem;
+    //font-family: Monaco;
+    text-align: center;
+      margin: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    //width: 40%;
+    //width: 100%;
+    //border: 1px solid red;
+    font-weight: 700;
+    //background: red;
+
+    "
+    >
+    
+    <div
+	class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md"
+    >
+    <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading
+    </div>
+    </a>
 </div>
     `
     //s = "11"
