@@ -867,7 +867,9 @@ Understanding both how extraordinarily profitable cotton was and how interconnec
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
 
-
+    const FEAR_OF_GOVT_OVERREACH = `
+    <iframe class="w-full h-1/3" src="https://www.youtube.com/embed/a_uFsdgVXBE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `
     const ECON = `
 
     <div style=" font-size: 1.5rem; background: #fafafa; color: #141414; font-family: helvetica; padding: 34px; border-radius: 8px; line-height: 2; "> <b style=" font-size: 2rem; " >
@@ -907,8 +909,6 @@ Building a commercial enterprise out of the wilderness required labor and lots o
     <div class="hover:bg-gray-200 transition-all border-0 border-red-400 rounded-md" >
     <span style="font-size: 1.6rem; padding-right: 20px;">↪</span>Keep Reading </div> </a> </div>
     `
-
-
     const nodes = [
         // top left reasons
         { x: -200, z: -114, size:  30, label: "European Food Shortages", content: IRISH_FAMINE },
@@ -931,7 +931,7 @@ Building a commercial enterprise out of the wilderness required labor and lots o
         { x: - 25, z:   24, size:  20, label: "Strong Economic Incentives", content: ECON },
 
         // central three themes
-        { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: "todo" },
+        { x: - 34, z: - 67, size:  90, label: "Fear of Government Overreach", content: FEAR_OF_GOVT_OVERREACH },
         { x: - 48, z: -139, size:  60, label: "State vs Federal Power", content: STATE_VS_FEDERAL_RIGHTS },
         { x: - 30, z: - 15, size:  80, label: "Conflict over Slavery", content: CONFLICT_OVER_SLAVERY },
 
