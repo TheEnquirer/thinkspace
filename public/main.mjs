@@ -40,7 +40,8 @@ const VERTICAL_MOVE_SPEED = 0.5
 // camera
 const camera = (() => {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
+    camera.position.set(-218, 13.9, -117);
+    camera.rotation.set(-2.0612374314736113, -1.0533215256732134, -2.1217348078257974);
     scene.add(camera);
     return camera;
 })();
@@ -554,6 +555,8 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 function onDocumentMouseDown( event ) {
     event.preventDefault();
+
+    console.log(camera.position, camera.rotation);
 
     mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
