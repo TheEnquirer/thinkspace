@@ -267,7 +267,7 @@ let clickables = [];    // must implement handleClick(clickevent)
 class CommentThread {
     constructor(wtfisav) {
         this.mesh = new THREE.Mesh(
-            new THREE.OctahedronBufferGeometry(0.5),
+            new THREE.OctahedronBufferGeometry(1),
             new THREE.MeshStandardMaterial({ color: "#35FFF8" }),
         );
 
@@ -1189,4 +1189,3 @@ const world = await worldPromise;
 console.log("world loaded")
 
 animate();
-
