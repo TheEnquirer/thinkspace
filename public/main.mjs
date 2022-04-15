@@ -1,22 +1,26 @@
 // INITIALIZE
 
-import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.135.0-pjGUcRG9Xt70OdXl97VF/mode=imports/optimized/three.js';
-import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/FirstPersonControls.js';
+//import * as THREE from 'https://cdn.skypack.dev/pin/three@0.139.2-pjGUcRG9Xt70OdXl97VF/mode=imports/optimized/three.js';
+import * as THREE from 'https://cdn.skypack.dev/three@0.136.0';
+//import { FirstPersonControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/FirstPersonControls.js';
+import { FirstPersonControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/FirstPersonControls.js';
 
-import { Sky } from 'https://cdn.skypack.dev/three/examples/jsm/objects/Sky.js'
+import { Sky } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/objects/Sky.js'
 
-import { GLTFLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'https://cdn.skypack.dev/three/examples/jsm/loaders/DRACOLoader.js';
+import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/DRACOLoader.js';
 
-import { SpriteText2D, textAlign } from 'https://cdn.skypack.dev/three-text2d';
+//import { SpriteText2D, textAlign } from 'https://cdn.skypack.dev/three-text2d';
 
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 
-import { GUI } from 'https://cdn.skypack.dev/three/examples/jsm/libs/lil-gui.module.min.js';
+//import { GUI } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/libs/lil-gui.module.min.js';
 
 import { addCommentToDb, supabaseClient, Testing } from './database_manager.js';
 
 import 'https://cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js';
+
+console.log("yeah?")
 
 const loader = new GLTFLoader();
 const scene = new THREE.Scene(); // init scene
