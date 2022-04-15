@@ -1,0 +1,13 @@
+import { Vector2 } from "three";
+export declare const textAlign: {
+    center: Vector2;
+    left: Vector2;
+    top: Vector2;
+    topLeft: Vector2;
+    topRight: Vector2;
+    right: Vector2;
+    bottom: Vector2;
+    bottomLeft: Vector2;
+    bottomRight: Vector2;
+};
+export declare function getFontHeight(fontStyle: string): number;

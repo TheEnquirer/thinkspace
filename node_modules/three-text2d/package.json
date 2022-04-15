@@ -1,0 +1,40 @@
+{
+  "name": "three-text2d",
+  "version": "0.6.0",
+  "description": "Render texture from canvas into THREE's Mesh or Sprite.",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "author": "Endel Dreyer <endel.dreyer@gmail.com>",
+  "keywords": [
+    "three.js",
+    "text",
+    "canvas",
+    "font"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gamestdio/three-text2d.git"
+  },
+  "scripts": {
+    "start": "webpack-dev-server",
+    "dist": "npm run dist-dev && npm run dist-prod",
+    "dist-dev": "webpack --config webpack.dist.config.js",
+    "dist-prod": "webpack --config webpack.dist.config.js --optimize-minimize --output-filename three-text2d.min.js",
+    "prepublish": "tsc"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/three": "^0.93.15",
+    "three": "*",
+    "three-orbit-controls": "^72.0.0",
+    "ts-loader": "^6.0.1",
+    "typescript": "^3.5.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
+  },
+  "peerDependencies": {
+    "@types/three": "*",
+    "three": "*"
+  }
+}

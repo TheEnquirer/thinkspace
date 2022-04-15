@@ -1,0 +1,51 @@
+import THREE = require("three");
+import { CanvasText } from "./CanvasText";
+export interface TextOptions {
+    font?: string;
+    fillStyle?: string;
+    align?: THREE.Vector2;
+    side?: number;
+    antialias?: boolean;
+    shadowColor?: string;
+    shadowBlur?: number;
+    shadowOffsetX?: number;
+    shadowOffsetY?: number;
+    lineHeight?: number;
+    backgroundColor?: string;
+    horizontalPadding?: number;
+    verticalPadding?: number;
+}
+export declare abstract class Text2D extends THREE.Object3D {
+    side: number;
+    antialias: boolean;
+    texture: THREE.Texture;
+    material: THREE.MeshBasicMaterial | THREE.SpriteMaterial;
+    protected _align: THREE.Vector2;
+    protected _font: string;
+    protected _fillStyle: string;
+    protected _text: string;
+    protected _shadowColor: string;
+    protected _shadowBlur: number;
+    protected _shadowOffsetX: number;
+    protected _shadowOffsetY: number;
+    protected _lineHeight: number;
+    protected _backgroundColor: string;
+    protected _horizontalPadding: number;
+    protected _verticalPadding: number;
+    protected canvas: CanvasText;
+    constructor(text?: string, options?: TextOptions);
+    abstract raycast(): void;
+    abstract updateText(): void;
+    get width(): number;
+    get height(): number;
+    get text(): string;
+    set text(value: string);
+    get font(): string;
+    set font(value: string);
+    get fillStyle(): string;
+    set fillStyle(value: string);
+    get align(): THREE.Vector2;
+    set align(value: THREE.Vector2);
+    cleanUp(): void;
+    applyAntiAlias(): void;
+}
