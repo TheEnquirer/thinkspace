@@ -162,7 +162,10 @@ let worldPromise = (async () => {
     return world;
 })();
 
-const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
+//const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
+const USER = window.localStorage.getItem('username') || prompt("What name would you like to comment with?", "Anonymous user")
+
+    //await fetch("https://random-word-api.herokuapp.com/word?number=2&swear=0").then(res => res.json()).then(x => x.join(' ')));
 //window.localStorage.setItem('username', USER);
 
 ///////////////////////////////////////
